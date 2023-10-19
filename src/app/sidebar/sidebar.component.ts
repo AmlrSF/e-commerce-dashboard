@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +18,7 @@ export class SidebarComponent {
           name: 'billboards',
           icon:'fa-brands fa-bandcamp',
         },{
-          name: 'view site',
+          name: 'website',
           icon: 'fa-solid fa-eye',
         },
       ],
@@ -49,10 +50,22 @@ export class SidebarComponent {
     
   ];
 
-  public sidebarisOpen : boolean = false;
+  public currentPath: string | undefined ;
+  
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentPath = event.url.slice(1);
+        console.log(this.currentPath);
+      }
+    });
+  }
+
+  public sidebarisOpen : boolean = true;
 
   public toggleSideBar(){
-    this.sidebarisOpen = !this.sidebarisOpen;
+    this.sidebarisOpen = false;
     console.log(this.sidebarisOpen);
     
   }

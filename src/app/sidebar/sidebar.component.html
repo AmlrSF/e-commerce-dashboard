@@ -1,10 +1,10 @@
-<div [ngClass]="{'w-30':sidebarisOpen === true}"  class="sm:w-72  w-30 shadow-lg dark:bg-secondary-dark-bg
+<div  class="sm:w-72 shadow-lg dark:bg-secondary-dark-bg
  fixed top-0 left-0 h-screen bg-white overflow-y-auto p-3">
     <div class="sm:flex text-center justify-between items-center">
         <a href="/" class="sm:block hidden text-4xl font-extrabold tracking-tight dark:text-white text-slate-900 ">
             Store
         </a>
-        <button (click)="toggleSideBar()">
+        <button>
             <i class="fa-solid text-2xl font-bold fa-down-left-and-up-right-to-center"></i>
         </button>
     </div>
@@ -14,12 +14,13 @@
                 {{link.title}}
             </p>
             <ul class="flex flex-col border-b py-2">
-                <li  *ngFor="let item of link.items" 
-                class="p-3 rounded-md hover:bg-[#eee]">
-                    <a  class="flex gap-3 te items-center"
-                        href="/{{item.name}}">
-                        <i class="{{item.icon}} text-xl sm:w-5"></i>
-                        <span class="sm:block hidden text-lg ">{{item.name}}</span>
+                <li *ngFor="let item of link.items" 
+                    [ngClass]="{'bg-[#eee]': item.name === currentPath}"
+                    class="p-3 rounded-md hover:bg-[#eee]">
+                    <a class="flex gap-3 items-center"
+                    [routerLink]="['/', item.name]"> <!-- Use routerLink to navigate -->
+                    <i class="{{item.icon}} text-xl sm:w-5"></i>
+                    <span class="sm:block hidden text-lg">{{item.name}}</span>
                     </a>
                 </li>
             </ul>
