@@ -1,3 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+body{
+    margin: 0;
+    padding:0;
+    font-family: "Open Sans", sans-serif;
+}
+
 @tailwind base;
 @tailwind components;
-@tailwind utilities
+@tailwind utilities;
+
+:root{
+    --primary-clr: #ff6b6b;
+    --secondary-clr: #794afa;
+    --secondary-dark: #453c5c;
+    --white-clr: #fff;
+    --light-bg-clr: #f2f3f5;
+    --light-txt-clr: #7c899a;
+    --border-clr: #e5e8ec;
+    --dark-clr: #0a021c;
+}
+
+/* For WebKit Browsers (Chrome and Safari) */
+/* Track */
+::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+    
+  }
+  
+  /* Thumb (the draggable part) */
+  ::-webkit-scrollbar-thumb {
+    background: #000000; /* Set the color of the scrollbar thumb */
+    border-radius: 25px;
+    height: 150px;
+  }
+  
+  /* Track (the area behind the thumb) */
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Set the color of the scrollbar track */
+  }
+  
+
+  
+  /* Set smooth scrolling behavior */
+  body {
+    scroll-behavior: smooth;
+  }
