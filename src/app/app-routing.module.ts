@@ -9,12 +9,15 @@ import { OrdersComponent } from './orders/orders.component';
 import { TagsComponent } from './tags/tags.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CustomersComponent } from './customers/customers.component';
+import { NewProductComponent } from './new-product/new-product.component';
 
 const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'billboards', component: BillboardsComponent },
   { path: 'website', component: WebsiteComponent },
-  { path: 'products', component: ProductsComponent },
+  { path: 'products', component: ProductsComponent, children: [
+    { path: 'new', component: NewProductComponent }, 
+  ]},
   { path: 'orders', component: OrdersComponent },
   { path: 'tags', component: TagsComponent },
   { path: 'customers', component: CustomersComponent },

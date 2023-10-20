@@ -1,30 +1,28 @@
-<div  class="sm:w-72 shadow-lg dark:bg-secondary-dark-bg
- fixed top-0 left-0 h-screen bg-white overflow-y-auto p-3">
+<div class="sm:w-72 shadow-lg bg-[black] fixed top-0 left-0 z-20 h-screen overflow-y-auto p-3">
     <div class="sm:flex text-center justify-between items-center">
-        <a href="/" class="sm:block hidden text-4xl font-extrabold tracking-tight dark:text-white text-slate-900 ">
+        <a href="/" class="sm:block text-[#fff] hidden text-4xl
+         font-extrabold tracking-tight ">
             Store
         </a>
-        <button>
-            <i class="fa-solid text-2xl font-bold fa-down-left-and-up-right-to-center"></i>
-        </button>
+
     </div>
     <div class="mt-10">
         <div *ngFor="let link of links">
-            <p class="sm:block hidden text-gray-400 mt-4 text-xl mb-4 uppercase">
+            <p class="sm:block hidden text-[rgba(255,255,255,0.5)] mt-4 text-xl mb-4 uppercase text-white">
                 {{link.title}}
             </p>
-            <ul class="flex flex-col border-b py-2">
-                <li *ngFor="let item of link.items" 
-                    [ngClass]="{'bg-[#eee]': item.name === currentPath}"
-                    class="p-3 rounded-md hover:bg-[#eee]">
-                    <a class="flex gap-3 items-center"
-                    [routerLink]="['/', item.name]"> <!-- Use routerLink to navigate -->
-                    <i class="{{item.icon}} text-xl sm:w-5"></i>
-                    <span class="sm:block hidden text-lg">{{item.name}}</span>
+            <ul class="flex gap-1 flex-col border-b border-[rgba(255,255,255,0.2)] py-2">
+                <li  *ngFor="let item of link.items" 
+                    [ngClass]="{'bg-[rgba(255,255,255,0.1)]': item.name === currentPath}"
+                    class="p-3 rounded-md hover:bg-[rgba(255,255,255,0.1)]">
+                    <a  [ngClass]="{'text-white': item.name === currentPath}"
+                        class="flex gap-3 items-center text-gray-400 hover:text-white"
+                    [routerLink]="['/', item.name]">
+                        <i class="{{item.icon}} text-xl sm:w-5"></i>
+                        <span class="sm:block hidden   text-lg">{{item.name}}</span>
                     </a>
                 </li>
             </ul>
         </div>
-       
     </div>
 </div>

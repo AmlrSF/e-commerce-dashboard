@@ -13,6 +13,9 @@ import { TagsComponent } from './tags/tags.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { CustomersComponent } from './customers/customers.component';
+import { HeaderComponent } from './header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NewProductComponent } from './new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +28,16 @@ import { CustomersComponent } from './customers/customers.component';
     OrdersComponent,
     CategoriesComponent,
     TagsComponent,
-    CustomersComponent
+    CustomersComponent,
+    HeaderComponent,
+    NewProductComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

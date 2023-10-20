@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ProductsComponent {
 
+  public AddNew:boolean = false;
+  
+  public tooglebtn(){
+    this.AddNew = !this.AddNew;
+  }
 }

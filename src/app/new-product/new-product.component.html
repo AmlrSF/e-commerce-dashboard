@@ -1,0 +1,76 @@
+<div class="container">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="image" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Image</label>
+        <input
+            type="file"
+            id="image"
+            formControlName="image"
+            (change)="onImageChange($event)"
+            accept="image/*"
+            class="form-control flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus:ring-blue-500" />
+        <div *ngIf="formSubmitted && productForm.get('image')?.hasError('required')">
+            Image is required.
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label>Preview</label>
+        <img [src]="imageUrl" *ngIf="imageUrl" alt="Preview" class="square-preview" />
+        </div>
+  
+      <div class="form-group">
+        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus:border-blue-500" />
+        <div *ngIf="formSubmitted && productForm.get('name')?.hasError('required')">
+          Name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="description">Description</label>
+        <textarea id="description" formControlName="description" class="form-control flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus:border-blue-500"></textarea>
+        <div *ngIf="formSubmitted && productForm.get('description')?.hasError('required')">
+          Description is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="category">Category</label>
+        <select id="category" formControlName="category" class="form-control flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus:border-blue-500">
+          <option value="">Select a category</option>
+          <option value="category1">Category 1</option>
+          <option value="category2">Category 2</option>
+          <option value="category3">Category 3</option>
+        </select>
+        <div *ngIf="formSubmitted && productForm.get('category')?.hasError('required')">
+          Category is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="tags">Tags</label>
+        <input type="text" id="tags" formControlName="tags" class="form-control flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus:border-blue-500" />
+      </div>
+  
+      <div class="form-group">
+        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="price">Price</label>
+        <input type="text" id="price" formControlName="price" class="form-control flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus:border-blue-500" />
+        <div *ngIf="formSubmitted && productForm.get('price')?.hasError('required')">
+          Price is required.
+        </div>
+        <div *ngIf="formSubmitted && productForm.get('price')?.hasError('pattern')">
+          Price must be a number.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>
+          <input type="checkbox" formControlName="featured" /> Featured
+        </label>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  
