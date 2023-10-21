@@ -11,7 +11,7 @@
                 </p> 
             </ng-template>
             <ng-template #elsetext>  
-                <h2 class="text-3xl font-bold tracking-tight">Products (0)</h2>
+                <h2 class="text-3xl font-bold tracking-tight">Products ({{products.length}})</h2>
                 <p class="text-sm text-neutral-500 font-light">
                     Discover our products.
                 </p>   
@@ -40,8 +40,31 @@
         <router-outlet></router-outlet>
     </div>
     <ng-template #elseBlock>
-        table
+        <div>
+            <h2>Product List</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products" (click)="navigateToProduct(product._id)">
+                    <td>{{ product._id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.category }}</td>
+                </tr>          
+              </tbody>
+            </table>
+          </div>
     </ng-template>
 </div>
 
-
+<app-product-detail></app-product-detail>

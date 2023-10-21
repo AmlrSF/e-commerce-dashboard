@@ -1,50 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ProductServiceService } from '../product-service.service';
 
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
   styleUrls: ['./new-product.component.css']
 })
-export class NewProductComponent {
+export class NewProductComponent  {
   public productForm: FormGroup;
-  public imageUrl:string = "";
-  public formSubmitted: boolean = false;
-  constructor(private fb: FormBuilder) {
+  public imageUrl: string = '';
+  
+
+  constructor(
+    private fb: FormBuilder,
+    private productService : ProductServiceService
+  ) {
     this.productForm = this.fb.group({
-      image: ['', Validators.required],
       name: ['', Validators.required],
+      price: ['', Validators.required],
+      image: [''],
       description: ['', Validators.required],
       category: ['', Validators.required],
-      tags: [''],
-      price: ['', [Validators.required, Validators.pattern('^[0-9.]+$')]],
-      featured: [false],
+      tag: [''],
+      featured: [false]
     });
   }
 
   onSubmit() {
-    this.formSubmitted = true;
     if (this.productForm.valid) {
-      // Handle form submission here
+      this.productForm.value['image'] = this.imageUrl;
       console.log(this.productForm.value);
+
+      this.productService
+      .postProduct(JSON.stringify(this.productForm.value)).subscribe(res=>console.log(res),err=>console.log(err));
+      
     }
   }
 
-  public   onImageChange(event: any) {
+  onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Read the selected image and set it as the preview
+      // Read the file as a Base64 string
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imageUrl = e.target.result;
+      reader.onload = (e) => {
+        this.imageUrl = reader.result as string;
       };
       reader.readAsDataURL(file);
-
-      // Set the selected image as the form value
-      this.productForm.patchValue({
-        image: file
-      });
     }
   }
+  
+
+  openImage() {
+    const inputElement = document.getElementById('image');
+    if (inputElement) {
+      inputElement.click();
+    }
+  }
+
 }

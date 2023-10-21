@@ -10,19 +10,22 @@ import { TagsComponent } from './tags/tags.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CustomersComponent } from './customers/customers.component';
 import { NewProductComponent } from './new-product/new-product.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'billboards', component: BillboardsComponent },
   { path: 'website', component: WebsiteComponent },
   { path: 'products', component: ProductsComponent, children: [
-    { path: 'new', component: NewProductComponent }, 
+    { path: 'new', component: NewProductComponent },
+    { path: ':id', component: ProductDetailComponent }, // Add this line for product detail
   ]},
   { path: 'orders', component: OrdersComponent },
   { path: 'tags', component: TagsComponent },
   { path: 'customers', component: CustomersComponent },
   { path: 'categories', component: CategoriesComponent },
 ];
+
 
 // configures NgModule imports and exports
 @NgModule({
