@@ -33,9 +33,8 @@ export class NewProductComponent  {
     if (this.productForm.valid) {
       this.productForm.value['image'] = this.imageUrl;
       console.log(this.productForm.value);
-
-      this.productService.postProduct(this.productForm.value)
-      .subscribe(
+  
+      this.productService.postProduct(this.productForm.value).subscribe(
         response => {
           console.log("Post request Successful", response);
         },
@@ -44,18 +43,16 @@ export class NewProductComponent  {
           // You can also show a user-friendly error message to the user.
         }
       );
-
-      
     }
   }
-
+  
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Read the file as a Base64 string
+      // Read the file as a Base64 string or use other methods to handle file uploads
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.imageUrl = reader.result as string;
+        this.imageUrl = reader.result as string; // Set the image URL from the file
       };
       reader.readAsDataURL(file);
     }
