@@ -17,10 +17,7 @@ export class ProductServiceService {
   }
 
   public postProduct(productData: any): Observable<any> {
-    return this.http.post(this.apiUrl, productData)
-      .pipe(
-        catchError(this.handleError('addProduct', productData))
-      );
+    return this.http.post(this.apiUrl, JSON.stringify(productData));
   }
 
   public deleteAllProducts(): Observable<any> {

@@ -22,6 +22,8 @@ export class NewProductComponent  {
       image: [''],
       description: ['', Validators.required],
       category: ['', Validators.required],
+      discount: ['', Validators.required],
+      quantity: ['', Validators.required],
       tag: [''],
       featured: [false]
     });
@@ -32,8 +34,17 @@ export class NewProductComponent  {
       this.productForm.value['image'] = this.imageUrl;
       console.log(this.productForm.value);
 
-      this.productService
-      .postProduct(JSON.stringify(this.productForm.value)).subscribe(res=>console.log(res),err=>console.log(err));
+      this.productService.postProduct(this.productForm.value)
+      .subscribe(
+        response => {
+          console.log("Post request Successful", response);
+        },
+        error => {
+          console.log("Post request error", error);
+          // You can also show a user-friendly error message to the user.
+        }
+      );
+
       
     }
   }
