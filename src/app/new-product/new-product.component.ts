@@ -1,7 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductServiceService } from '../product-service.service';
+import { HttpClient } from '@angular/common/http';
 
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
@@ -10,11 +12,13 @@ import { ProductServiceService } from '../product-service.service';
 export class NewProductComponent  {
   public productForm: FormGroup;
   public imageUrl: string = '';
-  
+  private apiUrl = 'http://localhost:3000/api/v1/products';
+
 
   constructor(
+    private http: HttpClient,
     private fb: FormBuilder,
-    private productService : ProductServiceService
+   
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -29,20 +33,16 @@ export class NewProductComponent  {
     });
   }
 
+
+
+
   onSubmit() {
     if (this.productForm.valid) {
       this.productForm.value['image'] = this.imageUrl;
       console.log(this.productForm.value);
   
-      this.productService.postProduct(this.productForm.value).subscribe(
-        response => {
-          console.log("Post request Successful", response);
-        },
-        error => {
-          console.log("Post request error", error);
-          // You can also show a user-friendly error message to the user.
-        }
-      );
+      this.http.post(this.apiUrl,this.productForm.value).subscribe(res=>console.log(res));
+      
     }
   }
   

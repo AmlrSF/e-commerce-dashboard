@@ -14,6 +14,7 @@ export class ProductServiceService {
 
   public getProducts(): Observable<any> {
     return this.http.get(this.apiUrl);
+    
   }
 
   public postProduct(productData: any): Observable<any> {
@@ -26,7 +27,7 @@ export class ProductServiceService {
 
   public updateProductById(productId: string, productData: any): Observable<any> {
     const updateUrl = `${this.apiUrl}/product/${productId}`;
-    return this.http.put(updateUrl, productData);
+    return this.http.patch(updateUrl, productData);
   }
 
   public deleteProductById(productId: string): Observable<any> {
@@ -39,11 +40,5 @@ export class ProductServiceService {
     return this.http.get(getUrl);
   }
 
-  private handleError(operation = 'operation', data: any) {
-    return (error: any): Observable<any> => {
-      console.error(`${operation} failed:`, error);
-      return throwError(error);
-    };
-  }
 }
 

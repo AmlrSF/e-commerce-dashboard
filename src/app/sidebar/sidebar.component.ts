@@ -57,7 +57,7 @@ export class SidebarComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentPath = event.url.slice(1);
-        console.log(this.currentPath);
+        
       }
     });
   }

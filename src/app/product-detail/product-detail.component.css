@@ -1,0 +1,12 @@
+.discountNumber::after{
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: grey;
+    opacity: 0.4;
+    left: 0;
+    top: 50%;
+    transform:translateY(-50%);
+    z-index: 1100;
+}

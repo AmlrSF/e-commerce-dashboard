@@ -1,0 +1,4 @@
+.table-container {
+    overflow-x: auto;
+    max-width: 100%; /* Adjust the maximum width as needed */
+  }

@@ -16,10 +16,9 @@ const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'billboards', component: BillboardsComponent },
   { path: 'website', component: WebsiteComponent },
-  { path: 'products', component: ProductsComponent, children: [
-    { path: 'new', component: NewProductComponent },
-    { path: ':id', component: ProductDetailComponent }, // Add this line for product detail
-  ]},
+  { path: 'products', component: ProductsComponent},
+  { path: 'products/new', component: NewProductComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'tags', component: TagsComponent },
   { path: 'customers', component: CustomersComponent },
