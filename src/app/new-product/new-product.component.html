@@ -51,7 +51,7 @@
           />
         </div>
         
-        <div (click)="openImage()" class="cursor-pointer relative bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] w-full p-3 h-72 flex justify-center items-center">
+        <div (click)="openImage()" class="cursor-pointer relative bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] w-full p-3 h-44 flex justify-center items-center">
           <ng-container *ngIf="imageUrl; else noImage">
             <img [src]="imageUrl" [alt]="imageUrl" class="w-full h-full object-contain" />
           </ng-container>
@@ -63,7 +63,7 @@
       </div>
       <div class="form-group mb-3">
         <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="description">Description</label>
-        <textarea id="description" formControlName="description" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm h-72 rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3"></textarea>
+        <textarea id="description" formControlName="description" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm h-44 rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3"></textarea>
         
       </div>
       <div class="form-group mb-3">

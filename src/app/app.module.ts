@@ -24,6 +24,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

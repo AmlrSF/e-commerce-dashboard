@@ -2,6 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductServiceService } from '../product-service.service';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
 
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
@@ -18,6 +20,7 @@ export class NewProductComponent  {
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
+    private toastr: ToastrService // Inject the toastr service
    
   ) {
     this.productForm = this.fb.group({
@@ -39,9 +42,16 @@ export class NewProductComponent  {
   onSubmit() {
     if (this.productForm.valid) {
       this.productForm.value['image'] = this.imageUrl;
-      console.log(this.productForm.value);
-  
-      this.http.post(this.apiUrl,this.productForm.value).subscribe(res=>console.log(res));
+    
+        this.http.post(this.apiUrl,this.productForm.value).subscribe(res=>{
+          
+         // Show a success toast notification
+        this.toastr.success('Product added successfully');
+        this.productForm.reset();
+      },
+      (err)=>{
+        this.toastr.success('a problem accours when adding a products');
+      });
       
     }
   }
