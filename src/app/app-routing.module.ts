@@ -4,13 +4,13 @@ import { OverviewComponent } from './overview/overview.component';
 import { BillboardsComponent } from './billboards/billboards.component';
 import { WebsiteComponent } from './website/website.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from './products-routes/products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { TagsComponent } from './tags/tags.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CustomersComponent } from './customers/customers.component';
-import { NewProductComponent } from './new-product/new-product.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { NewProductComponent } from './products-routes/new-product/new-product.component';
+import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
 
 const routes: Routes = [
   { path: 'overview', component: OverviewComponent },

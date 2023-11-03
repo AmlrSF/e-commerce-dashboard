@@ -8,6 +8,7 @@ import { ProductServiceService } from '../product-service.service';
 })
 export class OverviewComponent implements OnInit {
   public product: any;
+  
   constructor(private productService: ProductServiceService){}
 
   ngOnInit(): void {

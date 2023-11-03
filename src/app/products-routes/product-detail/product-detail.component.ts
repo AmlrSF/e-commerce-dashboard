@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductServiceService } from '../product-service.service';
+import { ProductServiceService } from '../../product-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +17,7 @@ export class ProductDetailComponent implements OnInit {
   public imageUrl: string = '';
   public isopen: boolean = true;
   public loading:boolean = false;
-  private apiUrl = 'http://localhost:3000/api/v1/products/product/';
+  private apiUrl = 'http://localhost:3000/api/v1/products/product';
   public isToastVisible: boolean = false;
 
   constructor(

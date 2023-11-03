@@ -6,7 +6,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { OverviewComponent } from './overview/overview.component';
 import { BillboardsComponent } from './billboards/billboards.component';
 import { WebsiteComponent } from './website/website.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from './products-routes/products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
@@ -15,15 +15,14 @@ import { RouterModule } from '@angular/router';
 import { CustomersComponent } from './customers/customers.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NewProductComponent } from './new-product/new-product.component';
+import { NewProductComponent } from './products-routes/new-product/new-product.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -41,7 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
     CustomersComponent,
     HeaderComponent,
     NewProductComponent,
-    ProductDetailComponent,
+    ProductDetailComponent
     
   ],
   imports: [
