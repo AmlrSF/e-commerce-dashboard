@@ -22,8 +22,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
+
 import { ToastrModule } from 'ngx-toastr';
+import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
 
 
 @NgModule({

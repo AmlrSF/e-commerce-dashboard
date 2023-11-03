@@ -11,7 +11,6 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CustomersComponent } from './customers/customers.component';
 import { NewProductComponent } from './products-routes/new-product/new-product.component';
 import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
-
 const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'billboards', component: BillboardsComponent },

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductServiceService } from '../../product-service.service';
+import { ProductServiceService } from 'src/app/product-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
+import { ToasterService } from '@coreui/angular';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,17 +16,16 @@ export class ProductDetailComponent implements OnInit {
   public productForm: FormGroup;
   public imageUrl: string = '';
   public isopen: boolean = true;
+  public loading: boolean = false;
   private apiUrl = 'http://localhost:3000/api/v1/products/product';
-  public isToastVisible: boolean = false;
-  public isloading:boolean = false;
-  public editstatus:string = this.isloading ? 'editing.../' : 'edit'; 
+
   constructor(
     private productService: ProductServiceService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private http:HttpClient,
-    private toastr: ToastrService // Inject the toastr service
+    private http: HttpClient,
+    private toastService: ToasterService
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -41,7 +40,6 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const productId = params.get('id');
@@ -49,7 +47,7 @@ export class ProductDetailComponent implements OnInit {
         this.productService.getProductById(productId).subscribe(
           (product) => {
             this.product = product.data;
-  
+
             // Update form values with the current product data
             this.productForm.patchValue({
               name: this.product.name,
@@ -62,17 +60,17 @@ export class ProductDetailComponent implements OnInit {
               tag: this.product.tag,
               featured: this.product.featured
             });
-  
+
             this.imageUrl = this.product.image;
           },
           (error) => {
-            // Handle errors, e.g., show a not-found message
+            console.log(error);
+            
           }
         );
       }
     });
   }
-  
 
   public openEditForm() {
     this.isopen = !this.isopen;
@@ -84,22 +82,19 @@ export class ProductDetailComponent implements OnInit {
         console.log(res);
         this.router.navigate(['/products']);
 
-        // Show a success toast notification
-        this.toastr.success('Product deleted successfully');
+       
       },
       (err) => {
         console.log(err);
 
-        // Show an error toast notification
-        this.toastr.error('Product deletion failed');
+        
       }
     );
-    
+    this.loading = false;
   }
 
-
   onSubmit() {
-    this.isloading = true;
+    this.loading = true;
     if (this.productForm.valid) {
       this.productForm.value['image'] = this.imageUrl;
 
@@ -108,22 +103,18 @@ export class ProductDetailComponent implements OnInit {
         (res) => {
           console.log(res);
 
-          // Show a success toast notification
-          this.toastr.success('Product updated successfully');
-          this.isloading = false;
+         
           this.productForm.reset();
           this.router.navigate(['/products']);
         },
         (err) => {
           console.log(err);
 
-          // Show an error toast notification
-          this.toastr.error('Product update failed');
+          
         }
       );
     }
   }
-
 
   onImageChange(event: any) {
     const file = event.target.files[0];
@@ -142,7 +133,4 @@ export class ProductDetailComponent implements OnInit {
       inputElement.click();
     }
   }
-
- 
-
 }
