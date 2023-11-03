@@ -16,10 +16,10 @@ export class ProductDetailComponent implements OnInit {
   public productForm: FormGroup;
   public imageUrl: string = '';
   public isopen: boolean = true;
-  public loading:boolean = false;
   private apiUrl = 'http://localhost:3000/api/v1/products/product';
   public isToastVisible: boolean = false;
-
+  public isloading:boolean = false;
+  public editstatus:string = this.isloading ? 'editing.../' : 'edit'; 
   constructor(
     private productService: ProductServiceService,
     private route: ActivatedRoute,
@@ -94,12 +94,12 @@ export class ProductDetailComponent implements OnInit {
         this.toastr.error('Product deletion failed');
       }
     );
-    this.loading = false;
+    
   }
 
 
   onSubmit() {
-    this.loading = true;
+    this.isloading = true;
     if (this.productForm.valid) {
       this.productForm.value['image'] = this.imageUrl;
 
@@ -110,7 +110,7 @@ export class ProductDetailComponent implements OnInit {
 
           // Show a success toast notification
           this.toastr.success('Product updated successfully');
-
+          this.isloading = false;
           this.productForm.reset();
           this.router.navigate(['/products']);
         },
