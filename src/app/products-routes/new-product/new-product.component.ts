@@ -44,10 +44,11 @@ export class NewProductComponent  {
       this.productForm.value['image'] = this.imageUrl;
     
         this.http.post(this.apiUrl,this.productForm.value).subscribe(res=>{
-          
-         // Show a success toast notification
+        
+        
         this.toastr.success('Product added successfully');
         this.productForm.reset();
+        this.imageUrl = "";
       },
       (err)=>{
         this.toastr.success('a problem accours when adding a products');

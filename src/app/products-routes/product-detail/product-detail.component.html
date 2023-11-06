@@ -1,7 +1,5 @@
-<p>product-detail works!</p>
+
 <div class="px-5">    
-   
-  
     <div class="mt-5 flex justify-between items-center w-full gap-3 border-b pb-5">
         <div>
             <h2 class="text-3xl font-bold tracking-tight">Product details</h2>
@@ -44,7 +42,7 @@
                     <span class="w-20">tags</span> <span class="text-sm font-medium  text-[#39f] p-2 rounded-md">#{{product.tag}}</span>
                 </div>
 
-                <p class="mt-8 text-neutral-500 font-thin">Added in {{product.firstDate}}</p>
+                <p class="mt-8 text-neutral-500 font-normal">Added in {{formatReadableDate(product.firstDate)}}</p>
                 <div class="flex items-center gap-3 mt-5">   
                     <button class="w-32 text-center text-lg text-white font-medium  rounded-md p-2 bg-green-500" (click)="openEditForm()">Edit</button>
                     <button class="w-32 text-center text-lg text-white font-medium bg-red-500  rounded-md p-2" (click)="deleteProduct(product._id)">delete</button>

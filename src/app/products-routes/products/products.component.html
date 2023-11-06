@@ -23,11 +23,11 @@
             w-full sm:w-[320px] p-3 mb-3 mt-3"/>
 
 
-        <div class="table-container relative max-w-7xl" style="max-width: 1000px; overflow-x: auto;">
-            <table mat-table [dataSource]="dataSource" class="overflow-x-scroll">
+        <div class="table-container relative max-w-7xl">
+            <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8 demo-table w-[850px] overflow-x-auto">
                 <ng-container *ngFor="let column of displayedColumns; let i = index" [matColumnDef]="column">
-                <th mat-header-cell *matHeaderCellDef>
-                    {{ column === '_id' ? '# ID' : column === 'firstDate' ? 'Added Date' : column === 'updateDate' ? 'Updated Date' : column }}
+                <th class="bg-[#000] font-medium" mat-header-cell *matHeaderCellDef>
+                    {{ column === '_id' ? '#ID' : column === 'firstDate' ? 'Added Date' : column === 'updateDate' ? 'Updated Date' : column }}
                 </th>
                 <td mat-cell *matCellDef="let element; let i = index;" (click)="navigateToProduct(element._id)">
                     <ng-container *ngIf="column === 'image'" class="py-2">
@@ -36,15 +36,21 @@
                     </div>
                     </ng-container>
                     <ng-container *ngIf="column === '_id';">#{{ i + 1 }}</ng-container>
-                    <ng-container *ngIf="column === 'name';">{{  element.name }}</ng-container>
-                    <ng-container *ngIf="column === 'quantity';">{{  element.quantity }}</ng-container>
-                    <ng-container *ngIf="column === 'price';">{{element.price}}</ng-container>
-                    <ng-container *ngIf="column === 'discount';">{{element.discount}}</ng-container>
+                    <ng-container *ngIf="column === 'name';">
+                        <span class="underline cursor-pointer font-medium">{{  element.name }}</span>
+                    </ng-container>
+                    <ng-container *ngIf="column === 'quantity';"><p class="font-bold text-lg text-center">{{  element.quantity }}</p></ng-container>
+                    <ng-container *ngIf="column === 'price';">   <p class="font-bold text-lg">{{formatPrice(element.price)}}</p></ng-container>
+                    <ng-container *ngIf="column === 'discount';"><p class="font-bold text-lg">{{formatPrice(element.discount)}}</p></ng-container>
                     <ng-container *ngIf="column === 'category';">{{element.category}}</ng-container>
                     <ng-container *ngIf="column === 'tag';">{{element.tag}}</ng-container>
-                    <ng-container *ngIf="column === 'featured';">{{element.featured}}</ng-container>
-                    <ng-container *ngIf="column === 'firstDate';">{{element.firstDate}}</ng-container>
-                    <ng-container *ngIf="column === 'updateDate';">{{element.updateDate}}</ng-container>
+                    <ng-container *ngIf="column === 'featured';"><p class="text-center">{{element.featured == true? "Featured" :"Not Featured"}}</p></ng-container>
+                    <ng-container *ngIf="column === 'firstDate';">{{formatReadableDate(element.firstDate)}}</ng-container>
+                    <ng-container *ngIf="column === 'updateDate';">
+                        <span [ngClass]="compareDates(element.updateDate, element.firstDate)">
+                            {{ formatReadableDate(element.updateDate) }} 
+                          </span>
+                    </ng-container>
                 </td>
                 </ng-container>
 

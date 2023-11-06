@@ -99,7 +99,7 @@ export class ProductDetailComponent implements OnInit {
       this.productForm.value['image'] = this.imageUrl;
 
       // Make the HTTP request to update the product
-      this.http.put(`${this.apiUrl}/${this.product._id}`, this.productForm.value).subscribe(
+      this.http.put(`${this.apiUrl}/${this.product._id}`, {...this.productForm.value,updateDate:new Date()}).subscribe(
         (res) => {
           console.log(res);
 
@@ -114,6 +114,11 @@ export class ProductDetailComponent implements OnInit {
         }
       );
     }
+  }
+  public  formatReadableDate(dateString:any) {
+    const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', options);
   }
 
   onImageChange(event: any) {
