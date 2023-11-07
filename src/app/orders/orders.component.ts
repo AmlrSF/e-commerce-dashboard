@@ -58,20 +58,35 @@ export class OrdersComponent implements OnInit{
       }
     );
   }
+  private updateProductQuantitiesV2(orders: any[], status?: boolean) {
+  orders.forEach((order: any) => {
+    order.products.forEach((updatedProduct: any) => {
+      const productId = updatedProduct.product;
+      const allQte = parseInt(updatedProduct.product.quantity, 10);
+      const subQuantity = parseInt(updatedProduct.quantity, 10);
 
-  public deleteOrderById(id: string) {
-    this.orderS.deleteOrderById(id).subscribe(
-      (res) => {
-        console.log(res);
-        
-        this.orders.orders = this.orders.orders.filter((order: any) => order._id !== id);
-        this.updateProductQuantities(res,false)
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+      const newQuantity = status ? allQte - subQuantity : allQte + subQuantity;
+
+      const updateUrl = `http://localhost:3000/api/v1/products/product/${productId}`;
+
+      this.http.put(updateUrl, { quantity: newQuantity })
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            if (error.status === 404) {
+              console.log('Product not found.');
+            } else {
+              console.error(error);
+            }
+          }
+        );
+    });
+  });
   }
+  
+
   
   public toggleOrderStatusById(id: string) {
     const orderToUpdate = this.orders.orders.find((order: any) => order._id === id);
@@ -93,6 +108,19 @@ export class OrdersComponent implements OnInit{
     }
   }
   
+  public deleteOrderById(id: string) {
+    this.orderS.deleteOrderById(id).subscribe(
+      (res) => {
+        console.log(res);
+        
+        this.orders.orders = this.orders.orders.filter((order: any) => order._id !== id);
+        this.updateProductQuantities(res,false)
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
   //it works fine
   private updateProductQuantities(result: any, status?:boolean) {
     for (const updatedProduct of result.order.products) {
@@ -100,8 +128,7 @@ export class OrdersComponent implements OnInit{
       const allQuantity = parseInt(updatedProduct.product.quantity, 10);
       const subQuantity = parseInt(updatedProduct.quantity, 10);
       
-      console.log(updatedProduct);
-      
+     
 
       const newQuantity = status ? allQuantity - subQuantity : allQuantity + subQuantity;
       const updateUrl = `http://localhost:3000/api/v1/products/product/${productId}`;
@@ -125,33 +152,6 @@ export class OrdersComponent implements OnInit{
     }
   }
 
-  // private updateProductQuantitiesV2(orders: any[], status?: boolean) {
-  //   orders.forEach((order: any) => {
-  //     order.products.forEach((updatedProduct: any) => {
-  //       const productId = updatedProduct.product;
-  //       const allQte = parseInt(updatedProduct.product.quantity, 10);
-  //       const subQuantity = parseInt(updatedProduct.quantity, 10);
-  
-  //       const newQuantity = status ? allQte - subQuantity : allQte + subQuantity;
-  
-  //       const updateUrl = `http://localhost:3000/api/v1/products/product/${productId}`;
-  
-  //       this.http.put(updateUrl, { quantity: newQuantity })
-  //         .subscribe(
-  //           (response) => {
-  //             console.log(response);
-  //           },
-  //           (error) => {
-  //             if (error.status === 404) {
-  //               console.log('Product not found.');
-  //             } else {
-  //               console.error(error);
-  //             }
-  //           }
-  //         );
-  //     });
-  //   });
-  // }
-  
+
 
 }
