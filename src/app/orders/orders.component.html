@@ -16,70 +16,72 @@
         </a>
     </div>
     <div>
-        <h1 class="mb-5 flex justify-between items-center mt-2 text-3xl font-bold">All Pending Orders</h1>
+        <h1 class="mb-5 mt-10 flex justify-between items-center  text-4xl font-bold">All Pending Orders</h1>
       
-        <div class="w-[900px] overflow-x-auto">
-            <table class="w-full">
-                <thead>
+        <div *ngIf="orders.orders.length > 0; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <div class="max-w-[1000px]">
+        <table class="w-full  overflow-x-auto">
+            <thead>
+            <tr>
+                
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center"></th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">#ID</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Customer Name</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Address</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Zip Code</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">City</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Country</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Status</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Total Amount</th>
+                <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let order of orders.orders; let i = index">
                 <tr>
-                    
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center"></th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">#ID</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Customer Name</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Address</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Zip Code</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">City</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Country</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Status</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Total Amount</th>
-                    <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Actions</th>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">
+                    <i (click)="showProductDetails(i)" class="cursor-pointer  text-[#000] text-2xl fa-solid fa-caret-down"></i>
+                </td>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ i + 1 }}</td>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.FullName }}</td>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.emailTo }}</td>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.ZipCode }}</td>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.City }}</td>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.Country }}</td>
+                <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">
+                    <div class="flex gap-2 text-center items-center">
+                        {{ order.status ? "Verified" : "Pending" }}
+                        <span [ngClass]="{'bg-slate-500': !order.status, 'bg-green-500': order.status}" class="h-[10px] w-[10px] rounded-full"></span>
+                    </div>
+                </td>
+                
+                <td class="text-center py-4 border-b border-black border-t text-black font-normal text-lg">${{ order.totalAmount | number: '1.2-2' }}</td>
+                <td class="text-center w-fit px-2 flex gap-3 items-center text-black font-normal text-lg py-4 border-b border-black ">
+                    <button (click)="deleteOrderById(order._id)" class="bg-red-600 flex gap-2 items-center cursor-pointer text-white font-medium py-2 px-2 rounded-md">
+                        <i  class="  text-[#fff] text-xl fa-solid fa-trash"></i>
+                        Delete
+                        
+                    </button>
+                    <button (click)="toggleOrderStatusById(order._id)" class="bg-[#321fdb] gap-2 flex items-center cursor-pointer text-white font-medium py-2 px-2 rounded-md">
+                        <i  class="  text-[#fff] text-xl fa-solid fa-pen-to-square"></i>
+                        <div *ngIf="order.status; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>Disactivate</ng-template>
+                        <ng-template #elseBlock>Activate</ng-template>        
+                    </button>
+                </td>
                 </tr>
-                </thead>
-                <tbody>
-                <ng-container *ngFor="let order of orders.orders; let i = index">
-                    <tr>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">
-                        <i (click)="showProductDetails(i)" class="cursor-pointer  text-[#000] text-2xl fa-solid fa-caret-down"></i>
-                    </td>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ i + 1 }}</td>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.FullName }}</td>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.emailTo }}</td>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.ZipCode }}</td>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.City }}</td>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">{{ order.Country }}</td>
-                    <td class="text-center text-black font-normal text-lg py-4 border-b border-black border-t">
-                        <div class="flex gap-2 text-center items-center">
-                            {{ order.status ? "Verified" : "Pending" }}
-                            <span [ngClass]="{'bg-slate-500': !order.status, 'bg-green-500': order.status}" class="h-[10px] w-[10px] rounded-full"></span>
-                        </div>
-                    </td>
-                    
-                    <td class="text-center py-4 border-b border-black border-t text-black font-normal text-lg">${{ order.totalAmount | number: '1.2-2' }}</td>
-                    <td class="text-center w-fit px-2 flex gap-3 items-center text-black font-normal text-lg py-4 border-b border-black ">
-                        <button (click)="deleteOrderById(order._id)" class="bg-red-600 flex gap-2 items-center cursor-pointer text-white font-medium py-2 px-2 rounded-md">
-                            <i  class="  text-[#fff] text-xl fa-solid fa-trash"></i>
-                            Delete
+                <tr *ngIf="selectedOrder === order">
+                <td colspan="8">
+                    <div class="modal pl-20">
+                        <div class="modal-content mb-5">
+                            <div class="my-4 flex items-center  gap-[15rem] ">
+                                <h1 class="text-lg font-medium">ordered In <span class="text-md text-muted-foreground">{{formatReadableDate(order.orderDate)}} </span></h1>
+                                <span class="close cursor-pointer close-btn" (click)="closeProductModal()">
+                                    <i class="text-3xl close-btn text-[#000] fa-solid fa-xmark"></i>
+                                </span>
+                            </div>
                             
-                        </button>
-                        <button (click)="toggleOrderStatusById(order._id)" class="bg-[#321fdb] gap-2 flex items-center cursor-pointer text-white font-medium py-2 px-2 rounded-md">
-                            <i  class="  text-[#fff] text-xl fa-solid fa-pen-to-square"></i>
-                            <div *ngIf="order.status; then thenBlock else elseBlock"></div>
-                            <ng-template #thenBlock>Disactivate</ng-template>
-                            <ng-template #elseBlock>Activate</ng-template>        
-                        </button>
-                    </td>
-                    </tr>
-                    <tr *ngIf="selectedOrder === order">
-                    <td colspan="8">
-                        <div class="modal pl-20">
-                            <div class="modal-content mb-5">
-                                <div class="my-4 flex items-center  gap-[15rem] ">
-                                    <h1 class="text-lg font-medium">ordered In <span class="text-md text-muted-foreground">{{formatReadableDate(order.orderDate)}} </span></h1>
-                                    <span class="close cursor-pointer close-btn" (click)="closeProductModal()">
-                                        <i class="text-3xl close-btn text-[#000] fa-solid fa-xmark"></i>
-                                    </span>
-                                </div>
-                                
                                 <table>
                                     <thead>
                                         <tr>
@@ -113,10 +115,15 @@
                 </tbody>
             </table>
             
-            <div class="flex gap-3 my-5 ">
+            <!-- <div class="flex gap-3 my-5 ">
                 <button (click)="deleteAllOrders()" class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#000] text-white flex items-center justify-center font-medium">Cancel All</button>
-            </div>
-        </div> 
+            </div> -->
+        </div>  
+    </ng-template>
+    <ng-template #elseBlock>
+        <h1 class="text-xl font-medium capitalize">No Orders yet.</h1>
+    </ng-template>
+            
     </div>
 </div>    
 
