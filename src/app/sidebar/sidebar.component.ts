@@ -12,7 +12,7 @@ export class SidebarComponent {
       title: 'Dashboard',
       items: [
         {
-          name: 'overview',
+          name: '',
           icon: 'fa-solid fa-house',
         },{
           name: 'billboards',

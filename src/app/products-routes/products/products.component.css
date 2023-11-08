@@ -1,10 +1,19 @@
 .table-container {
-    overflow-x: auto;
-    max-width: 100%; /* Adjust the maximum width as needed */
-  }
+  overflow-x: auto;
+  max-width: 100%; /* Adjust the maximum width as needed */
+}
 
 
-  .mat-mdc-header-cell{
-    background-color: black;
-    
-  }
+.mat-mdc-header-cell{
+  background-color: black;
+  
+}
+
+
+.overscroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS devices */
+  max-width: 100%; /* Ensure the table doesn't overflow the container */
+  white-space: nowrap; /* Prevent line breaks within table cells */
+}
+  

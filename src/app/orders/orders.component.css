@@ -1,0 +1,14 @@
+
+
+/* Styles for small devices (e.g., screens with a maximum width of 768px) */
+@media (max-width: 768px) {
+  .scrollable-div {
+    overflow-x: auto;
+    overflow: touch; /* Enable smooth scrolling on iOS devices */
+    white-space: nowrap; /* Prevent line breaks within the div */
+  }
+
+  .scrollable-table {
+    width: 100%; /* Ensure the table takes the full width of the div */
+  }
+}

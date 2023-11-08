@@ -23,8 +23,8 @@
             w-full sm:w-[320px] p-3 mb-3 mt-3"/>
 
 
-        <div class="table-container relative max-w-7xl">
-            <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8 demo-table w-[850px] overflow-x-auto">
+        <div class="table-container w-[850px] sm:w-full overflow-x-auto ">
+            <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8 demo-table ">
                 <ng-container *ngFor="let column of displayedColumns; let i = index" [matColumnDef]="column">
                 <th class="bg-[#000] font-medium" mat-header-cell *matHeaderCellDef>
                     {{ column === '_id' ? '#ID' : column === 'firstDate' ? 'Added Date' : column === 'updateDate' ? 'Updated Date' : column }}
