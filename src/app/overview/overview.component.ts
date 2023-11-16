@@ -13,15 +13,21 @@ export class OverviewComponent implements OnInit {
   public nbCostumer:number = 1;
   public Totalamount:number = 0;
   public nbOrders:number = 0;
+  public errorMsg:any;
   constructor(
     private productService: ProductServiceService,
     private orderS:OrdersService
     ){}
 
+
+
   ngOnInit(): void {
     this.productService.getProducts().subscribe(res=>{
       this.product = res.data.length;
+      console.log(res.data);
     })
+    
+    
     this.orderS.getOrderById("6547ee2d542e6d53e008cef5").subscribe(
       (res) => {
         this.orders = res;
