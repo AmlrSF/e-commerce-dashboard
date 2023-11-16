@@ -1,0 +1,13 @@
+.fly-item {
+    position: absolute;
+    top: -6.5px;
+    right: -6.5px;
+    height: 19px;
+    width: 19px;
+    font-size: 12px;
+    border-radius: 50%;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
