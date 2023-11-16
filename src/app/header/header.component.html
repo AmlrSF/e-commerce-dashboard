@@ -1,4 +1,4 @@
-<Header class="relative py-3 bg-white shadow-sm">
+<Header class="relative py-3 bg-white shadow-sm z-[999]">
     <div class="px-5 mx-auto">
         <div class="w-full flex justify-between items-center">
             <div class="relative ">
@@ -13,16 +13,22 @@
             </div>
             <div class="flex items-center space-x-4">
                 
-                <span class="h-10  hidden relative w-10 sm:grid rounded-full place-content-center cursor-pointer bg-black ">
+                <span (click)="togglePosition()" class="h-10   relative w-10 grid rounded-full place-content-center cursor-pointer bg-black ">
                     <i class="text-xl text-white text-muted-foreground fa-solid fa-bell"></i>
-                    <span class="fly-item bg-red-600">{{errorMsg.length}}</span>
-                    <div class="relative" >
+                    <span class="fly-item bg-red-500">{{errorMsg.length}}</span>
+                    <div  class="-z-10 absolute errors transition-all right-0  xs:w-[150px] w-[270px] p-3 bg-red-500
+                     rounded-lg " [style.top]="divTop">
                         <ul>
-                            <li *ngFor="let err of errorMsg">
-                                <a  href="">{{err.name.length > 15 ? err.name.slice(1,15)+'...':err.name}} reaches 0 in stock</a>
+                            <li class="my-1" *ngFor="let err of errorMsg">
+                                <a class="text-white font-medium flex gap-2 items-center"   [routerLink]="['/products', err.id]">
+                                    <img [src]="err.image" class="h-[30px] w-[30px]" alt=""> 
+                                     reaches 0 in stock
+                                </a>
                             </li>
                         </ul>
+                   
                     </div>
+                
                 </span>
                 <span class="h-10  w-10 hidden sm:grid rounded-full place-content-center bg-black ">
                     <i class="text-xl text-white text-muted-foreground fa-solid fa-envelope"></i>
@@ -30,7 +36,7 @@
                 </span>
                 <span class="h-10 relative w-10 grid rounded-full place-content-center bg-black  ">
                     <i class="text-xl text-white text-muted-foreground fa-solid fa-user"></i>
-                    
+                
                 </span>
             </div>
         </div>
