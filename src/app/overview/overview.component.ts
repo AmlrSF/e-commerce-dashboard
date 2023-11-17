@@ -8,7 +8,7 @@ import { OrdersService } from '../orders.service';
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
-  public product: any;
+  public product: any[] = [];
   public orders: any;
   public nbCostumer:number = 1;
   public Totalamount:number = 0;
@@ -24,10 +24,12 @@ export class OverviewComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe(res=>{
       
-      this.product = res.data.length;
+      this.product = res.data;
     
      
     })
+
+    
     
 
     
@@ -43,6 +45,34 @@ export class OverviewComponent implements OnInit {
         console.error('Error fetching orders:', error);
       }
     );
+  }
+
+  public navigateToProduct(id:string){
+
+  }
+
+  public deleteProductById(id:string){
+    this.productService.deleteProductById(id).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+
+        
+      }
+    );
+    
+     
+    this.productService.getProducts().subscribe(res=>{
+      this.product = res.data;
+    })
+  }
+
+  public  formatReadableDate(dateString:any) {
+    const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', options);
   }
 
   public getOrderLength(orders: any[]): number {

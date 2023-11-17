@@ -16,7 +16,8 @@
                 <span (click)="togglePosition()" class="h-10   relative w-10 grid rounded-full place-content-center cursor-pointer bg-black ">
                     <i class="text-xl text-white text-muted-foreground fa-solid fa-bell"></i>
                     <span class="fly-item bg-red-500">{{errorMsg.length}}</span>
-                    <div  class="z-1  absolute errors transition-all right-0  xs:w-[150px] w-[270px] p-3 bg-red-500
+                    <div  class="z-1  absolute errors transition-all right-0  xs:w-[150px] w-[270px] p-3
+                     bg-black
                      rounded-lg " [style.top]="divTop">
                         <ul>
                             <li class="my-1" *ngFor="let err of errorMsg">

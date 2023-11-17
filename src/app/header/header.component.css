@@ -25,9 +25,10 @@
     
     right: 8px;
     border-top: 15px solid transparent;
-    border-bottom: 15px solid rgb(239 68 68 / 5);
+    /* border-bottom: 15px solid rgb(239 68 68 / 5); */
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
+    border-bottom: 15px solid black; 
     
 }
 

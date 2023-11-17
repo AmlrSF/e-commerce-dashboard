@@ -1,4 +1,4 @@
-<div class="px-5">
+<div class="px-5 pb-10">
     <div *ngFor="let item of errorMsg">
         {{item}}
     </div>
@@ -14,7 +14,7 @@
                 <i class="text-[2.5em] font-bold text-[#321fdb]  fa-solid fa-fire"></i>
                 <div>
                     <span class="text-[#9a9a9a] font-light text-[16px] leading-6" >Products</span>
-                    <p class="text-[2em] text-right">{{product}}</p>
+                    <p class="text-[2em] text-right">{{product.length}}</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 text-sm text-neutral-500 border-t py-2">
@@ -64,5 +64,65 @@
        
     </div>
     
+    
+    <div class="grid-container mt-10">
+        <div class="bg-white p-5 rounded-lg shadow">
+            <div class="header  flex items-center justify-between">
+                <span class="text-xl font-medium">Last 5 products added</span>
+                <i class="cursor-pointer fa-solid fa-minus text-xl font-bold"></i>
+            </div>
+            <div class="pt-5">
+                <ul>
+                    <li *ngFor="let item of product.slice(-5).reverse()">
+                        <div class="flex items-center py-3 gap-3 justify-between border-t">
+                           <div class="flex items-center gap-3">
+                                <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="item.image" alt="">
+                                <div class="flex flex-col gap-1 items-start ">
+                                    <a (click)="navigateToProduct(item._id)" class="text-lg font-medium">{{ item.name }}</a>
+                                <span class="text-sm text-slate-600">Added in {{ formatReadableDate(item.firstDate)}}</span>
+                                </div>
+                           </div>
+                           <div>
+                                <button (click)="deleteProductById(item._id)" class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
+                           </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>        
+        <div class="bg-white  p-5 rounded-lg shadow">
+            <div class="header  flex items-center justify-between">
+                <span class="text-xl font-medium">Last 5 orders added</span>
+                <i class="cursor-pointer fa-solid fa-minus text-xl font-bold"></i>
+            </div>
+            <div class="pt-5">
+                <ul>
+                    <li *ngFor="let item of product.slice(-5).reverse()">
+                        <div class="flex items-center py-3 gap-3 justify-between border-t">
+                           <div class="flex items-center gap-3">
+                                <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="item.image" alt="">
+                                <div class="flex flex-col gap-1 items-start ">
+                                    <a (click)="navigateToProduct(item._id)" class="text-lg font-medium">{{ item.name.slice(1,20)+'...' }}</a>
+                                <span class="text-sm text-slate-600">Added in {{ formatReadableDate(item.firstDate)}}</span>
+                                </div>
+                           </div>
+                           <div class="flex items-center gap-1 ">
+                                <button (click)="deleteProductById(item._id)" class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
+                                <button  class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> Activate </button>
+                           </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-white  p-5 rounded-lg shadow">
+            <div class="header  flex items-center justify-between">
+                <span class="text-xl font-medium">Last 5 orders added</span>
+                <i class="cursor-pointer fa-solid fa-minus text-xl font-bold"></i>
+            </div>
+            <div>
 
+            </div>
+        </div>
+    </div>
 </div>
