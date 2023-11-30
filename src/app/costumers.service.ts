@@ -11,13 +11,18 @@ export class CostumersService {
 
   constructor(private http: HttpClient) { }
 
-  public getOrders(): Observable<any> {
+  public getCostumer(): Observable<any> {
     return this.http.get(this.apiUrl);
     
   }
   
-  public getOrdersByID(id:string): Observable<any> {
+  public getCostumerByID(id:string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
+    
+  }
+
+  public deleteCostumerById(id:string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
     
   }
 

@@ -13,7 +13,7 @@ export class CustomersComponent implements OnInit {
     constructor(private router: Router,private costumers:CostumersService,){}
 
   ngOnInit(): void {
-    this.costumers.getOrders().subscribe(
+    this.costumers.getCostumer().subscribe(
       (res:any)=>{
         console.log(res);
         this.result = res.customers;
@@ -51,5 +51,7 @@ export class CustomersComponent implements OnInit {
   public navigateTo(id:string){
     this.router.navigate(['customers',id]);
   }
+
+
 
 }
