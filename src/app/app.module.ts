@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ProductDetailComponent } from './products-routes/product-detail/product
     CustomersComponent,
     HeaderComponent,
     NewProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CustomerDetailsComponent
     
   ],
   imports: [

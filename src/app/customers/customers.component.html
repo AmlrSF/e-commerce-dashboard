@@ -1,1 +1,56 @@
-<p>customers works!</p>
+<div class="px-5">
+    <div class="mt-5 flex justify-between items-center w-full gap-3 border-b pb-5">
+        <div>
+            <h2 class="text-3xl font-bold tracking-tight">customers {{result.length}}</h2>
+            <p class="text-sm text-neutral-500 font-light">
+                Manage Custumers.
+            </p>  
+            
+        </div>
+    </div>
+    <div class="w-[100%]">
+        <h1 class="mb-5 mt-10 flex justify-between items-center  text-4xl font-bold">All Pending Orders</h1>
+      
+        <div *ngIf="result.length > 0; then thenBlock else elseBlock"></div> 
+        <ng-template #thenBlock>
+            <div class="w-full  py-4 overflow-y-auto">
+                <table class="w-[100%]">
+                    <thead>
+                        
+                    <tr>
+                        <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">#ID</th>
+                        <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Profile Image</th>
+                        <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">First Name</th>
+                        <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Last Name</th>
+                        <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Email</th>
+                        <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">Phone Number</th>
+                        <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">register Date</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <ng-container *ngFor="let costumer of result; let i = index">
+                        <tr (click)="navigateTo(costumer._id)">
+                            <td (click)="navigateTo(costumer._id)" class=" underline  text-center  text-black font-normal text-lg py-4 border-b border-black border-t">{{ i + 1 }}</td>
+                            
+                            <td (click)="navigateTo(costumer._id)" class=" underline  text-center    text-black font-normal text-lg py-4 border-b border-black border-t">
+                                <div class="flex items-center gap-2">
+                                    <img class="rounded-full  h-[45px] w-[45px]" [src]="costumer.profileImage" alt="image">
+                                </div>
+                            </td>
+                            <td (click)="navigateTo(costumer._id)" class="  text-center  text-black font-normal text-lg py-4 border-b border-black border-t">{{costumer.firstName }}</td>
+                            <td (click)="navigateTo(costumer._id)" class="  text-center  text-black font-normal text-lg py-4 border-b border-black border-t">{{costumer.lastName}}</td>
+                            <td (click)="navigateTo(costumer._id)" class="  text-center  text-black font-normal text-lg py-4 border-b border-black border-t">{{costumer.email }}</td>
+                            <td (click)="navigateTo(costumer._id)" class="  text-center  text-black font-normal text-lg py-4 border-b border-black border-t">{{costumer.phoneNumber }}</td>
+                            <td (click)="navigateTo(costumer._id)" class="  text-center  text-black font-normal text-lg py-4 border-b border-black border-t">{{formatReadableDate(costumer.registrationDate) }}</td>
+                        </tr>
+                    </ng-container>    
+                </table>
+            </div>  
+        </ng-template>
+        <ng-template #elseBlock>
+            <h1 class="text-xl font-medium capitalize">No Orders yet.</h1>
+        </ng-template>
+            
+    </div>
+</div>

@@ -11,6 +11,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CustomersComponent } from './customers/customers.component';
 import { NewProductComponent } from './products-routes/new-product/new-product.component';
 import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 const routes: Routes = [
   { path: '', component: OverviewComponent },
   { path: 'billboards', component: BillboardsComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent},
   { path: 'products/new', component: NewProductComponent },
   { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'customers/:id', component: CustomerDetailsComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'tags', component: TagsComponent },
   { path: 'customers', component: CustomersComponent },

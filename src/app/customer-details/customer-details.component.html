@@ -1,0 +1,51 @@
+<div class="px-5">    
+    <div class="mt-5 flex justify-between items-center w-full gap-3 border-b pb-5">
+        <div>
+            <h2 class="text-3xl font-bold tracking-tight">Customer details</h2>
+            <p class="text-sm text-neutral-500 font-light">
+                Manage [ <span class="text-lg font-normal">{{costumer.firstName}}</span> ] detail.
+            </p>  
+            
+            </div>
+        <a [routerLink]="['/customers']" 
+        class="h-9 rounded-md px-3 bg-black
+            text-white flex items-center gap-3 font-medium">
+            <i class="fa-solid fa-backward"></i>
+            Back
+        </a>
+    </div>
+    <div class="mt-10">
+        <div class="flex items-start">
+            <div class="flex flex-col text-center gap-5 border-r">
+                <img class="h-[150px] w-[150px] rounded-full object-cover" [src]="costumer.profileImage" alt="image">
+                <h1 class="text-3xl mt-3 font-bold">{{costumer.lastName}} {{costumer.firstName}}</h1>
+                <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.bio}}</p>
+            </div>
+        </div>
+        <div class="w-[350px]">
+            <ul>
+                <li class="flex justify-between gap-5 items-center"> 
+                    <span class="text-xl leading-4 font-bold">first Name</span>
+                    <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.firstName}}</p>
+                </li>
+                <li class="flex justify-between gap-5 items-center"> 
+                    <span class="text-xl leading-4 font-bold">last Name</span>
+                    <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.lastName}}</p>
+                </li>
+                <li class="flex justify-between gap-5 items-center"> 
+                    <span class="text-xl leading-4 font-bold">email</span>
+                    <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.email}}</p>
+                </li>
+                <li class="flex justify-between gap-5 items-center"> 
+                    <span class="text-xl leading-4 font-bold">phone Number</span>
+                    <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.phoneNumber}}</p>
+                </li>
+                <li class="flex justify-between gap-5 items-center"> 
+                    <span class="text-xl leading-4 font-bold">Register Date </span>
+                    <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.firstName}}</p>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>    
