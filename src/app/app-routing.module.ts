@@ -13,7 +13,7 @@ import { NewProductComponent } from './products-routes/new-product/new-product.c
 import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 const routes: Routes = [
-  { path: '', component: OverviewComponent },
+  { path: 'overview', component: OverviewComponent },
   { path: 'billboards', component: BillboardsComponent },
   { path: 'website', component: WebsiteComponent },
   { path: 'products', component: ProductsComponent},

@@ -1,1 +1,59 @@
-<p>billboards works!</p>
+<div class="px-5">
+    <div class="mt-5 flex justify-between items-center w-full gap-3 border-b pb-5">
+        <div>
+            <h2 class="text-3xl font-bold tracking-tight">Billboards </h2>
+            <p class="text-sm text-neutral-500 font-light">
+                Manage Billboards.
+            </p>  
+            
+        </div>
+    </div>
+    <div class="grid-container mt-8">
+        <div class="bg-white shadow-lg rounded-lg p-2">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <div class="form-group mb-3">
+                    <input type="text" id="Title" formControlName="Title" class="bg-gray-50 border-2 border-gray-300 text-gray-900
+                    text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-2 " placeholder="Enter a Title" />
+                    
+                  </div>
+                  <div class="form-group mb-3">         
+                     <textarea id="description" formControlName="description" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm h-[50px] rounded-lg 
+                     focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" placeholder="Enter a Description"></textarea>       
+                  </div>
+                  <div class="mb-3">
+                    <div class="form-group">
+                      
+                      <input
+                        type="file"
+                        id="image"
+                        formControlName="image"
+                        (change)="onImageChange($event)"
+                        accept="image/*"
+                        class="bg-gray-50 hidden border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none w-full p-2"
+                      />
+                    </div>
+                    
+                    <div (click)="openImage()" class="cursor-pointer relative bg-gray-50 border-2
+                     border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] 
+                     focus:border-[#321fdb] w-full overflow-hidden  h-[150px] flex justify-center items-center">
+                      <ng-container *ngIf="imageUrl; else noImage">
+                        <img [src]="imageUrl" [alt]="imageUrl" class="w-full h-full object-cover" />
+                      </ng-container>
+                      <ng-template #noImage>
+                        <img src="../../assets/download.png" alt="preview" class=" w-full h-full object-contain opacity-40" />
+                      </ng-template>
+                    </div>
+                    
+                  </div>
+                <button mat-raised-button class="bg-black w-full rounded-lg text-white font-medium py-1" type="submit">Submit</button>
+            </form>
+        </div>
+        <div>
+            hello
+        </div>
+    </div>
+</div>
+
+<div class="model">
+
+</div>

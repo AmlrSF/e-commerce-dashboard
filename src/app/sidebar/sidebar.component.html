@@ -1,6 +1,6 @@
 <div class="sm:w-72 shadow-lg bg-[black]  z-20 h-[100%] p-3">
     <div class="sm:flex text-center justify-between items-center">
-        <a href="/" class="sm:block text-[#fff] hidden text-4xl
+        <a routerLink="/overview" class="sm:block text-[#fff] hidden text-4xl
          font-extrabold tracking-tight ">
             Store
         </a>
@@ -11,13 +11,13 @@
             <p class="sm:block hidden text-[rgba(255,255,255,0.5)] mt-4 text-xl mb-4 uppercase text-white">
                 {{link.title}}
             </p>
-            <ul class="flex gap-1 flex-col border-b border-[rgba(255,255,255,0.2)] py-2">
+            <ul class="flex gap-1 flex-col border-b border-[rgba(74,34,34,0.2)] py-2">
                 <li  *ngFor="let item of link.items" 
-                    [ngClass]="{'bg-[rgba(255,255,255,0.1)]': item.name === currentPath}"
+                    
                     class="p-3 rounded-md hover:bg-[rgba(255,255,255,0.1)]">
-                    <a  [ngClass]="{'text-white': item.name === currentPath}"
+                    <a  
                         class="flex gap-3 items-center text-gray-400 hover:text-white"
-                        [routerLink]="['/', item.name]">    
+                        (click)="navigateTo(item.name)">    
                         <i class="{{item.icon}} text-xl sm:w-5"></i>
                         <span class="sm:block hidden   text-lg">{{item.name ? item.name:"overview"}}</span>
                     </a>
@@ -26,3 +26,6 @@
         </div>
     </div>
 </div>
+<!-- " 
+    
+-->

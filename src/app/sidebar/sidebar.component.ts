@@ -12,7 +12,7 @@ export class SidebarComponent {
       title: 'Dashboard',
       items: [
         {
-          name: '',
+          name: 'overview',
           icon: 'fa-solid fa-house',
         },{
           name: 'billboards',
@@ -49,9 +49,13 @@ export class SidebarComponent {
     },
     
   ];
-
+  
+  // [routerLink]="['/', item.name]
   public currentPath: string | undefined ;
   
+  public navigateTo(item:string){
+    this.router.navigate(['/',item])
+  }
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
