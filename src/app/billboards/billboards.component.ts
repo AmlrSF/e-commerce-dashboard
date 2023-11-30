@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-billboards',
@@ -35,15 +35,17 @@ export class BillboardsComponent {
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      inputControl: [''],
-      selectControl: [''],
-      textareaControl: ['']
+      header: ['',Validators.required],
+      description: ['',Validators.required],
+      image: ['']
     });
   }
 
   onSubmit() {
-    // Handle form submission logic here
-    console.log('Form submitted!', this.myForm.value);
-    // You can send the form data to a server, perform other actions, etc.
+    if(this.myForm.valid){
+      this.myForm.value['image'] = this.imageUrl;
+      console.log(this.myForm.value);
+      
+    }
   }
 }
