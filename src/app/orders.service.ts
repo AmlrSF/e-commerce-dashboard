@@ -11,10 +11,12 @@ export class OrdersService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts(): Observable<any> {
+  public getOrders(): Observable<any> {
     return this.http.get(this.apiUrl);
     
   }
+
+  
 
   public postProduct(productData: any): Observable<any> {
     return this.http.post(this.apiUrl, JSON.stringify(productData));

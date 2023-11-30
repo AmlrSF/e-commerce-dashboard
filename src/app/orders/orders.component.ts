@@ -15,7 +15,8 @@ export class OrdersComponent implements OnInit{
   constructor(private http: HttpClient,private orderS:OrdersService,private productS:ProductServiceService){};
 
   ngOnInit(): void {
-      this.orderS.getOrderById("6547ee2d542e6d53e008cef5").subscribe(
+    
+      this.orderS.getOrders().subscribe(
       (res) => {
         this.orders = res;
         console.log(this.orders);
