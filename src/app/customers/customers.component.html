@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="w-[100%]">
-        <h1 class="mb-5 mt-10 flex justify-between items-center  text-4xl font-bold">All Pending Orders</h1>
+        <h1 class="mb-5 mt-10 flex justify-between items-center  text-4xl font-bold">All Customerss</h1>
       
         <div *ngIf="result.length > 0; then thenBlock else elseBlock"></div> 
         <ng-template #thenBlock>
@@ -49,7 +49,7 @@
             </div>  
         </ng-template>
         <ng-template #elseBlock>
-            <h1 class="text-xl font-medium capitalize">No Orders yet.</h1>
+            <h1 class="text-xl font-medium capitalize">No Costumers yet.</h1>
         </ng-template>
             
     </div>

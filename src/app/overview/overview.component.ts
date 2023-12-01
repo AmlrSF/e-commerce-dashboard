@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductServiceService } from '../product-service.service';
 import { OrdersService } from '../orders.service';
+import { CostumersService } from '../costumers.service';
 
 @Component({
   selector: 'app-overview',
@@ -10,13 +11,14 @@ import { OrdersService } from '../orders.service';
 export class OverviewComponent implements OnInit {
   public product: any[] = [];
   public orders: any;
-  public nbCostumer:number = 1;
+  public nbCostumer:number = 0;
   public Totalamount:number = 0;
   public nbOrders:number = 0;
   public errorMsg:any[] = [];
   constructor(
     private productService: ProductServiceService,
-    private orderS:OrdersService
+    private orderS:OrdersService,
+    private costumerS:CostumersService
     ){}
 
 
@@ -30,11 +32,16 @@ export class OverviewComponent implements OnInit {
     })
 
     
-    
+    this.costumerS.getCostumer().subscribe((res:any)=>{
+      this.nbCostumer = res.customers.length;
+    },(err:any)=>{
+      console.log(err);
+      
+    })
 
     
     
-    this.orderS.getOrderById("6547ee2d542e6d53e008cef5").subscribe(
+    this.orderS.getOrders().subscribe(
       (res) => {
         this.orders = res;
         this.Totalamount = this.calculateTotalAmountWithStatusTrue(this.orders.orders);

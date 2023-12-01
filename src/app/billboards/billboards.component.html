@@ -45,11 +45,26 @@
                     </div>
                     
                   </div>
-                <button mat-raised-button class="bg-black w-full rounded-lg text-white font-medium py-1" type="submit">Submit</button>
+                <button class="bg-black w-full rounded-lg text-white font-medium py-1" type="submit">{{editMode ? "Edit" : (loading ? "adding.../" :"Add New" )}}</button>
             </form>
         </div>
-        <div>
-            hello
+        <div class="bg-white flex flex-col shadow-lg rounded-lg p-2" *ngFor="let billboard of billboards">
+          <div class="cursor-pointer relative bg-gray-50 border-2
+          border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] 
+          focus:border-[#321fdb] w-full overflow-hidden  h-[150px] flex justify-center items-center">
+            <img [src]="billboard.image" [alt]="billboard.image" class="w-full h-full object-cover" />
+          </div>
+          <div class="info flex-1 pb-2 border-b flex flex-col">
+            <h1 class="text-xl font-medium">{{billboard.header}}</h1>
+            <p class="text-lg font-light text-slate-600">{{billboard.description}}</p>
+          </div>
+          <div class="flex justify-between items-center pt-2">
+            <span class="text-xs text-slate-500">{{formatReadableDate(billboard.addedDate)}}</span>
+            <div class="flex items-center gap-3">
+              <button class="p-2 bg-green-500 rounded-md text-white font-bold" (click)="update(billboard._id)" ><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="p-2 bg-red-500 rounded-md text-white font-bold"(click)="delete(billboard._id)" ><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
         </div>
     </div>
 </div>

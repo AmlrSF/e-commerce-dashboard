@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit{
   }
   ngOnInit(): void {
     this.productService.getProducts().subscribe(res=>{
-      console.log(res.data.filter((product:any)=>product.quantity === 0));
+      //console.log(res.data.filter((product:any)=>product.quantity === 0));
       
       this.errorMsg = res.data.filter((product:any) => product.quantity === 0)
       .map((product:any) => ({
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit{
         image:product.image,
         errorMessage: `Error: Quantity for ${product.name} is 0. Please update the quantity.`,
       }));
-      console.log(this.errorMsg);
+      //console.log(this.errorMsg);
       
     })
   }
