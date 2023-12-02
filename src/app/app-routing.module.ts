@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'tags', component: TagsComponent },
   { path: 'customers', component: CustomersComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: '', redirectTo: 'overview', pathMatch: 'full' }
 ];
 
 
