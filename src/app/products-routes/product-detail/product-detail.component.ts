@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToasterService } from '@coreui/angular';
+import { CategoriesService } from 'src/app/categories.service';
+import { TagsService } from 'src/app/tags.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,6 +20,8 @@ export class ProductDetailComponent implements OnInit {
   public isopen: boolean = true;
   public loading: boolean = false;
   private apiUrl = 'http://localhost:3000/api/v1/products/product';
+  public categories:any[] = [];
+  public tags:any[] = [];
 
   constructor(
     private productService: ProductServiceService,
@@ -25,7 +29,9 @@ export class ProductDetailComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private http: HttpClient,
-    private toastService: ToasterService
+    private toastService: ToasterService,
+    private catS:CategoriesService,
+    private tagS:TagsService
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -40,7 +46,32 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
+  getAllcategories() {
+    this.catS.getAllCategories().subscribe(
+      (data: any[]) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getAllTgas() {
+    this.tagS.getAllTags().subscribe(
+      (data: any[]) => {
+        this.tags = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   ngOnInit() {
+    this.getAllTgas();
+    this.getAllcategories();
+
     this.route.paramMap.subscribe(params => {
       const productId = params.get('id');
       if (productId) {
@@ -62,6 +93,8 @@ export class ProductDetailComponent implements OnInit {
             });
 
             this.imageUrl = this.product.image;
+
+           
           },
           (error) => {
             console.log(error);

@@ -106,28 +106,21 @@
         
       </div>
       <div class="form-group mb-3">
-        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="category">Category</label>
+        <label for="category" class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Category</label>
         <select id="category" formControlName="category" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3">
           <option value="">Select a category</option>
-          <option value="category1">Category 1</option>
-          <option value="category2">Category 2</option>
-          <option value="category3">Category 3</option>
+          <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
         </select>
-    
       </div>
+      
       <div class="form-group mb-3">
-        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="tag">Tag</label>
+        <label for="tag" class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Tag</label>
         <select id="tag" formControlName="tag" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3">
           <option selected value="">Select a tag</option>
-          <option value="tag1">Tag 1</option>
-          <option value="tag2">Tag 2</option>
-          <option value="tag3">Tag 3</option>
-          <option value="tag4">Tag 4</option>
-          <option value="tag5">Tag 5</option>
-          <option value="tag6">Tag 6</option>
+          <option *ngFor="let tag of tags" [value]="tag.name">{{ tag.name }}</option>
         </select>
-       
       </div>
+      
       <div class="form-group flex mb-3 gap-3">
         <label class="flex gap-4 items-center">
           Featured 

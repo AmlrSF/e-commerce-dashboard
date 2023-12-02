@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductServiceService } from '../../product-service.service';
 import { HttpClient } from '@angular/common/http';
@@ -6,21 +6,27 @@ import { ToastrService } from 'ngx-toastr';
 
 
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoriesService } from 'src/app/categories.service';
+import { TagsService } from 'src/app/tags.service';
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
   styleUrls: ['./new-product.component.css']
 })
-export class NewProductComponent  {
+export class NewProductComponent  implements OnInit{
   public productForm: FormGroup;
   public imageUrl: string = '';
   private apiUrl = 'http://localhost:3000/api/v1/products';
-
+  public categories:any[] = [];
+  public tags:any[] = [];
 
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
-    private toastr: ToastrService // Inject the toastr service
+    private toastr: ToastrService,
+    private catS:CategoriesService,
+    private tagS:TagsService,
+    
    
   ) {
     this.productForm = this.fb.group({
@@ -36,7 +42,33 @@ export class NewProductComponent  {
     });
   }
 
+  ngOnInit(): void {
+    this.getAllTgas();
+    this.getAllcategories();
+  }
 
+
+  getAllcategories() {
+    this.catS.getAllCategories().subscribe(
+      (data: any[]) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getAllTgas() {
+    this.tagS.getAllTags().subscribe(
+      (data: any[]) => {
+        this.tags = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 
   onSubmit() {
@@ -49,6 +81,7 @@ export class NewProductComponent  {
         this.toastr.success('Product added successfully');
         this.productForm.reset();
         this.imageUrl = "";
+        //this.router.na
       },
       (err)=>{
         this.toastr.success('a problem accours when adding a products');
