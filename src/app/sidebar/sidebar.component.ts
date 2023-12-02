@@ -17,10 +17,11 @@ export class SidebarComponent {
         },{
           name: 'billboards',
           icon:'fa-brands fa-bandcamp',
-        },{
-          name: 'website',
-          icon: 'fa-solid fa-eye',
-        },
+        }
+        // ,{
+        //   name: 'website',
+        //   icon: 'fa-solid fa-eye',
+        // },
       ],
     },
   

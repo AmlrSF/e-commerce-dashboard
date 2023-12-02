@@ -53,7 +53,7 @@
                 <i class="text-[2.5em] font-bold text-[#f9b115] fa-solid fa-calendar-day"></i> <!-- Use an appropriate icon for Last day -->
                 <div>
                     <span class="text-[#9a9a9a] font-light text-[16px] leading-6">Customers</span>
-                    <p class="text-[2em] text-right">{{nbCostumer}}</p>
+                    <p class="text-[2em] text-right">{{Costumers.length}}</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 text-sm text-neutral-500 border-t py-2">
@@ -78,7 +78,7 @@
                            <div class="flex items-center gap-3">
                                 <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="item.image" alt="">
                                 <div class="flex flex-col gap-1 items-start ">
-                                    <a (click)="navigateToProduct(item._id)" class="text-lg font-medium">{{ item.name }}</a>
+                                    <a  class="text-lg font-medium">{{ item.name }}</a>
                                 <span class="text-sm text-slate-600">Added in {{ formatReadableDate(item.firstDate)}}</span>
                                 </div>
                            </div>
@@ -89,7 +89,8 @@
                     </li>
                 </ul>
             </div>
-        </div>        
+        </div> 
+
         <div class="bg-white  p-5 rounded-lg shadow">
             <div class="header  flex items-center justify-between">
                 <span class="text-xl font-medium">Last 5 orders added</span>
@@ -97,18 +98,74 @@
             </div>
             <div class="pt-5">
                 <ul>
-                    <li *ngFor="let item of product.slice(-5).reverse()">
+                    <li *ngFor="let order of orders.orders.slice(-5).reverse()">
                         <div class="flex items-center py-3 gap-3 justify-between border-t">
                            <div class="flex items-center gap-3">
-                                <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="item.image" alt="">
+                                <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="order.customer.profileImage" alt="">
                                 <div class="flex flex-col gap-1 items-start ">
-                                    <a (click)="navigateToProduct(item._id)" class="text-lg font-medium">{{ item.name.slice(1,20)+'...' }}</a>
-                                <span class="text-sm text-slate-600">Added in {{ formatReadableDate(item.firstDate)}}</span>
+                                    <a class="text-lg font-medium">{{ order.customer.firstName }}  {{order.customer.lastName}}</a>
+                                <span class="text-sm text-slate-600">Ordered in {{ formatReadableDate(order.orderDate)}}</span>
                                 </div>
                            </div>
                            <div class="flex items-center gap-1 ">
-                                <button (click)="deleteProductById(item._id)" class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
-                                <button  class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> Activate </button>
+                                <!-- <button (click)="deleteOrderById(order._id)" class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button> -->
+                                <button (click)="toggleOrderStatusById(order._id)"  class="bg-[#321fdb] px-4 py-2 text-white rounded-lg font-medium"> 
+                                    <div *ngIf="order.status; then thenBlock else elseBlock"></div>
+                                    <ng-template #thenBlock>Disactivate</ng-template>
+                                    <ng-template #elseBlock>Activate</ng-template>   
+                                </button>
+                           </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white  p-5 rounded-lg shadow">
+            <div class="header  flex items-center justify-between">
+                <span class="text-xl font-medium">Last 5 Customers</span>
+                <i class="cursor-pointer fa-solid fa-minus text-xl font-bold"></i>
+            </div>
+            <div class="pt-5">
+                <ul>
+                    <li *ngFor="let customer of Costumers.slice(-5).reverse()">
+                        <div class="flex items-center py-3 gap-3 justify-between border-t">
+                           <div class="flex items-center gap-3">
+                                <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="customer.profileImage" alt="">
+                                <div class="flex flex-col gap-1 items-start ">
+                                    <a class="text-lg font-medium">{{ customer.firstName }}  {{customer.lastName}}</a>
+
+                                    <span class="text-sm text-slate-600">register  in {{ formatReadableDate(customer.registrationDate)}}</span>
+                                </div>
+                           </div>
+                           <div class="flex items-center gap-1 ">
+                               <button (click)="deleteCostumer(customer._id)" class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
+                           </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white  p-5 rounded-lg shadow">
+            <div class="header  flex items-center justify-between">
+                <span class="text-xl font-medium">Last 5 Categories Added</span>
+                <i class="cursor-pointer fa-solid fa-minus text-xl font-bold"></i>
+            </div>
+            <div class="pt-5">
+                <ul>
+                    <li *ngFor="let cat of cats.slice(-5).reverse()">
+                        <div class="flex items-center py-3 gap-3 justify-between border-t">
+                           <div class="flex items-center gap-3">
+                                <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="cat.image" alt="">
+                                <div class="flex flex-col gap-1 items-start ">
+                                    <a class="text-lg font-medium">{{ cat.name }}</a>
+                                    <span class="text-sm text-slate-600">{{cat.description}}</span>
+                                </div>
+                                <!-- <span class="text-sm text-slate-600">{{formatReadableDate(cat.createdAt)}}</span> -->
+                           </div>
+                           <div class="flex items-center gap-1 ">
+                               <button (click)="deleteCat(cat._id)" class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
                            </div>
                         </div>
                     </li>
@@ -117,11 +174,28 @@
         </div>
         <div class="bg-white  p-5 rounded-lg shadow">
             <div class="header  flex items-center justify-between">
-                <span class="text-xl font-medium">Last 5 orders added</span>
+                <span class="text-xl font-medium">Last 5 Tags Added</span>
                 <i class="cursor-pointer fa-solid fa-minus text-xl font-bold"></i>
             </div>
-            <div>
-
+            <div class="pt-5">
+                <ul>
+                    <li *ngFor="let tag of tags.slice(-5).reverse()">
+                        <div class="flex items-center py-3 gap-3 justify-between border-t">
+                           <div class="flex items-center gap-3">
+                                <div class="flex flex-col gap-1 items-start ">
+                                    <a class="text-lg font-medium">{{ tag.name }}</a>
+                                    <span class="text-sm text-slate-600">{{tag.description}}</span>
+                                </div>
+                                <!-- <span class="text-sm text-slate-600">
+                                    {{formatReadableDate(tag.createdAt)}}
+                                </span> -->
+                           </div>
+                           <div class="flex items-center gap-1 ">
+                               <button (click)="deleteTag(tag._id)" class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
+                           </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
