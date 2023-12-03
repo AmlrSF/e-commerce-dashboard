@@ -30,6 +30,26 @@ export class BillboardsComponent {
     }
   }
 
+  //price formatteur
+  public formatPrice(price: any) {
+    if (typeof price === 'string') {
+
+      if (price.includes('$')) {
+
+        return price.replace('$', '') + '$';
+      } else {
+
+        return price + '$';
+      }
+    } else if (typeof price === 'number') {
+
+      return price.toString() + '$';
+    } else {
+
+      return 'N/A';
+    }
+  }
+
   public formatReadableDate(dateString: any) {
     const options: any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(dateString);
