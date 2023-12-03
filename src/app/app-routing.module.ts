@@ -12,6 +12,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { NewProductComponent } from './products-routes/new-product/new-product.component';
 import { ProductDetailComponent } from './products-routes/product-detail/product-detail.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { CommentsComponent } from './comments/comments.component';
 const routes: Routes = [
   { path: 'overview', component: OverviewComponent },
   { path: 'billboards', component: BillboardsComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'tags', component: TagsComponent },
   { path: 'customers', component: CustomersComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: 'comments', component: CommentsComponent },
   { path: '', redirectTo: 'overview', pathMatch: 'full' }
 ];
 

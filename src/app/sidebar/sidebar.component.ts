@@ -41,6 +41,10 @@ export class SidebarComponent {
           icon: 'fa-solid fa-dumpster-fire',
         },
         {
+          name: 'comments',
+          icon: 'fa-solid fa-comment',
+        },
+        {
           name: 'customers',
           icon: 'fa-solid fa-users',
         }, {
