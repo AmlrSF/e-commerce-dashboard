@@ -84,6 +84,8 @@ export class BillboardsComponent {
     );
   }
 
+  
+
   public update(id: string) {
     this.editMode = true;
     this.BillboardS.getBillboardById(id).subscribe(
