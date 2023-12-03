@@ -62,7 +62,8 @@
             </div>
         </a>
     </div>
-    <div class="grid-container mt-10">
+
+    <div class="grid-container-v mt-10">
         <div class="bg-white p-5 rounded-lg shadow">
             <div class="header  flex items-center justify-between">
                 <span class="text-xl font-medium">Last 5 products added</span>
@@ -128,7 +129,7 @@
             </div>
             <div class="pt-5">
                 <ul>
-                    <li *ngFor="let customer of Costumers.slice(-6).reverse()">
+                    <li *ngFor="let customer of Costumers.slice(-5).reverse()">
                         <div class="flex items-center py-3 gap-3 justify-between border-t">
                             <div class="flex items-center gap-3">
                                 <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="customer.profileImage"
@@ -181,7 +182,7 @@
             </div>
             <div class="pt-5">
                 <ul>
-                    <li *ngFor="let tag of tags.slice(-5).reverse()">
+                    <li *ngFor="let tag of tags.slice(-6).reverse()">
                         <div class="flex items-center py-3 gap-3 justify-between border-t">
                             <div class="flex items-center gap-3">
                                 <div class="flex flex-col gap-1 items-start ">
@@ -191,6 +192,33 @@
                             </div>
                             <div class="flex items-center gap-1 ">
                                 <button (click)="deleteTag(tag._id)"
+                                    class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-white  p-5 rounded-lg shadow">
+            <div class="header  flex items-center justify-between">
+                <span class="text-xl font-medium">Last 5 comments Added</span>
+                <i class="cursor-pointer fa-solid fa-minus text-xl font-bold"></i>
+            </div>
+            <div class="pt-5">
+                <ul>
+                    <li *ngFor="let comment of comments.slice(-5).reverse()">
+                        <div class="flex items-center py-3 gap-3 justify-between border-t">
+                            <div class="flex items-center gap-3">
+                                <div class="flex flex-col gap-1 items-start ">
+                                   <div class="flex items-center gap-3">
+                                        <img class="h-[40px] w-[40px] rounded-full object-cover" [src]="comment.customerId.profileImage" alt="">
+                                        <a class="text-lg font-medium">{{ comment.customerId.lastName }} {{ comment.customerId.firstName }}</a>
+                                   </div>
+                                    <span class="text-sm text-slate-600">{{comment.content}}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1 ">
+                                <button (click)="deletecomment(comment._id)"
                                     class="bg-red-600 px-4 py-2 text-white rounded-lg font-medium"> delete </button>
                             </div>
                         </div>

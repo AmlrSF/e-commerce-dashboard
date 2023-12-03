@@ -1,11 +1,83 @@
 <div class="px-5">
     <div class="mt-5 flex justify-between items-center w-full gap-3 border-b pb-5">
         <div>
-            <h2 class="text-3xl font-bold tracking-tight">Comments </h2>
+            <h2 class="text-3xl font-bold tracking-tight">Comments [{{comments.length}}] </h2>
             <p class="text-sm text-neutral-500 font-light">
                 Manage Comments.
-            </p>  
-            
+            </p>
         </div>
+
+    </div>
+    <div class="w-[100%]">
+        <h1 class="mb-5 mt-10 flex justify-between items-center  text-4xl font-bold">All Pending Orders</h1>
+
+        <div *ngIf="comments.length > 0; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <div class="w-full  py-4 overflow-y-auto">
+                <table class="w-[100%]">
+                    <thead>
+                        <tr>
+
+                            <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">
+                                #ID</th>
+                            <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">
+                                Customer Name</th>
+                            <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">
+                                Comment</th>
+                            <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">
+                                In product of</th>
+                            <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">
+                                created At</th>
+                            <th class="text-md capitalize whitespace-nowrap bg-[#000] text-white py-4 px-2 text-center">
+                                actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let comment of comments; let i = index">
+                            <tr>
+                                <td
+                                    class="text-center  text-black font-normal text-lg py-4 border-b border-black border-t">
+                                    {{ i + 1 }}</td>
+                                <td
+                                    class="text-center    text-black font-normal text-lg py-4 border-b border-black border-t">
+                                    <div class="flex items-center gap-2">
+                                        <img class="rounded-full  h-[45px] w-[45px]"
+                                            [src]="comment.customerId.profileImage" alt="image">
+                                        <a  routerLink="/customers/{{ comment.customerId._id }}" class="underline text-lg font-bold">{{comment.customerId.lastName}}
+                                            {{comment.customerId.firstName}}</a>
+                                    </div>
+                                </td>
+                                <td
+                                    class="text-center  text-black font-normal text-lg py-4 border-b border-black border-t">
+                                    {{ comment.content }}</td>
+                                <td
+                                    class="text-center  text-black font-normal text-lg py-4 border-b border-black border-t">
+                                    <a routerLink="/products/{{ comment.productId._id }}" class="underline">{{
+                                        comment.productId.name }}</a>
+                                </td>
+                                <td
+                                    class="text-center  text-black font-normal text-lg py-4 border-b border-black border-t">
+                                    {{formatReadableDate(comment.createdAt)}}
+                                </td>
+                                <td
+                                    class="text-center  w-fit px-2  text-black font-normal text-lg py-4 border-b border-black ">
+                                    <div class="flex items-center gap-2">
+                                        <button (click)="delete(comment._id)"
+                                            class="bg-red-600 flex gap-2 items-center cursor-pointer text-white font-medium py-2 px-2 rounded-md">
+                                            <i class="  text-[#fff] inline  text-xl fa-solid fa-trash"></i>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+        <ng-template #elseBlock>
+            <h1 class="text-xl font-medium capitalize">No Orders yet.</h1>
+        </ng-template>
+
     </div>
 </div>

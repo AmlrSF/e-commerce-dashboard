@@ -6,3 +6,9 @@
 }
 
 
+.grid-container-v{
+    width: 100%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+}

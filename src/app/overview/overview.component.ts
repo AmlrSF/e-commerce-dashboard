@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CategoriesService } from '../categories.service';
 import { TagsService } from '../tags.service';
+import { CommentsService } from '../comments.service';
 
 @Component({
   selector: 'app-overview',
@@ -30,6 +31,8 @@ export class OverviewComponent implements OnInit {
 
   public tags:any[]=[];
 
+  public comments:any[]=[];
+
   constructor(
     private productService: ProductServiceService,
     private orderS:OrdersService,
@@ -37,10 +40,25 @@ export class OverviewComponent implements OnInit {
     private http:HttpClient,
     private router:Router,
     private catS:CategoriesService,
-    private tagS:TagsService
+    private tagS:TagsService,
+    private comment:CommentsService
   ){}
 
 
+  public fetechComments(){
+    this.comment.getComments().subscribe((res:any)=>{
+     
+      this.comments = res;
+
+      console.log(res);
+      
+    },(err:any)=>{
+      
+        console.log(err);
+        
+
+    })
+  }
 
   ngOnInit(): void {
 
@@ -54,6 +72,19 @@ export class OverviewComponent implements OnInit {
 
     this.fetchTags();
 
+    this.fetchCats();
+
+    this.fetechComments();
+  }
+
+  public deletecomment(id:string){
+    this.comment.deleteCommentById(id)
+    .subscribe((res:any)=>{
+      console.log("deletd succesfully maniga");
+      this.fetechComments();
+    },(err:any)=>{
+      console.log(err);      
+    })
   }
 
   //fetch acts
