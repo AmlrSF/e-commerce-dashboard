@@ -103,7 +103,7 @@ export class CategoriesComponent implements OnInit {
         );
       } else {
         this.loading = true;
-        
+
         console.log(this.myForm.value);
         const cat = {
           name: this.myForm.value.header,

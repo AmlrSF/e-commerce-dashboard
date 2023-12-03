@@ -8,15 +8,23 @@ import { CostumersService } from '../costumers.service';
   styleUrls: ['./customer-details.component.css']
 })
 export class CustomerDetailsComponent implements OnInit{
+
   public costumer: any;
 
-  constructor(private route: ActivatedRoute,private costumerS:CostumersService,private router:Router){};
+  constructor(
+    private route: ActivatedRoute,
+    private costumerS:CostumersService,
+    private router:Router
+  ){};
   
   public  formatReadableDate(dateString:any) {
     const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+
     const date = new Date(dateString);
+
     return date.toLocaleString('en-US', options);
   }
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -24,10 +32,14 @@ export class CustomerDetailsComponent implements OnInit{
       if (costumerID) {
        this.costumerS.getCostumerByID(costumerID).subscribe(
         (res:any)=>{
+
           console.log(res);
           this.costumer = res.customer;
+
         },(err:any)=>{
+
           console.log(err)
+
         }
        )
         
@@ -37,9 +49,13 @@ export class CustomerDetailsComponent implements OnInit{
   public delete(){
     this.costumerS.deleteCostumerById(this.costumer._id).subscribe(
       (res:any)=>{
+
         this.router.navigate(['/customers']);
+
       },(err:any)=>{
+
         console.log(err);
+        
         
       }
     )

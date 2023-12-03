@@ -11,13 +11,19 @@ import { HttpClient } from '@angular/common/http';
 export class CustomersComponent implements OnInit {
   public result : any[]=[];
     
-    constructor(private router: Router,private costumers:CostumersService,private http: HttpClient){}
+    constructor(
+      private router: Router,
+      private costumers:CostumersService,
+      private http: HttpClient
+    ){}
 
   ngOnInit(): void {
     this.costumers.getCostumer().subscribe(
       (res:any)=>{
+
         console.log(res);
         this.result = res.customers;
+
       },(err)=>{
         console.log(err);
       }
@@ -45,12 +51,16 @@ export class CustomersComponent implements OnInit {
 
   public  formatReadableDate(dateString:any) {
     const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+
     const date = new Date(dateString);
+
     return date.toLocaleString('en-US', options);
   }
 
   public navigateTo(id:string){
+
     this.router.navigate(['customers',id]);
+    
   }
 
 

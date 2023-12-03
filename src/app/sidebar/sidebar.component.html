@@ -4,7 +4,6 @@
          font-extrabold tracking-tight ">
             Store
         </a>
-
     </div>
     <div class="mt-10">
         <div *ngFor="let link of links">
@@ -12,12 +11,8 @@
                 {{link.title}}
             </p>
             <ul class="flex gap-1 flex-col border-b border-[rgba(74,34,34,0.2)] py-2">
-                <li  *ngFor="let item of link.items" 
-                    
-                    class="p-3 rounded-md hover:bg-[rgba(255,255,255,0.1)]">
-                    <a  
-                        class="flex gap-3 items-center text-gray-400 hover:text-white"
-                        (click)="navigateTo(item.name)">    
+                <li *ngFor="let item of link.items" class="p-3 rounded-md hover:bg-[rgba(255,255,255,0.1)]">
+                    <a class="flex gap-3 items-center text-gray-400 hover:text-white" (click)="navigateTo(item.name)">
                         <i class="{{item.icon}} text-xl sm:w-5"></i>
                         <span class="sm:block hidden   text-lg">{{item.name ? item.name:"overview"}}</span>
                     </a>
@@ -26,6 +21,3 @@
         </div>
     </div>
 </div>
-<!-- " 
-    
--->

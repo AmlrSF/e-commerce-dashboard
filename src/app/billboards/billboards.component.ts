@@ -16,7 +16,7 @@ export class BillboardsComponent {
   private baseUrl = 'http://localhost:3000/api/v1/billboards';
   private editBill: any;
 
-  public loading:boolean = false;
+  public loading: boolean = false;
   constructor(private formBuilder: FormBuilder, private BillboardS: BillboardService, private http: HttpClient) { }
 
   onImageChange(event: any) {
@@ -69,15 +69,15 @@ export class BillboardsComponent {
     this.BillboardS.getBillboardById(id).subscribe(
       (res: any) => {
         this.editBill = res;
-        
+
         this.myForm.patchValue({
           header: this.editBill.header,
-          description:this.editBill.description
+          description: this.editBill.description
         });
 
         this.imageUrl = this.editBill.image;
 
-      
+
       },
       (err: any) => {
         console.error(err);
@@ -88,21 +88,21 @@ export class BillboardsComponent {
   onSubmit() {
     if (this.myForm.valid) {
       if (this.editMode) {
-        
+
         const updatedData = {
           header: this.myForm.value.header,
           description: this.myForm.value.description,
           image: this.imageUrl,
-          
+
         };
 
         this.http.put(`${this.baseUrl}/billboard/${this.editBill._id}`, updatedData).subscribe(
           (res: any) => {
             console.log(res);
-           
+
             this.getBillboards();
             this.myForm.reset();
-            this.editMode = false; 
+            this.editMode = false;
             this.imageUrl = "";
           },
           (err: any) => {

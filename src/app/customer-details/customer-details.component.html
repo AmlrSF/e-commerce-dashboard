@@ -1,14 +1,13 @@
-<div class="px-5">    
+<div class="px-5">
     <div class="mt-5 flex justify-between items-center w-full gap-3 border-b pb-5">
         <div>
             <h2 class="text-3xl font-bold tracking-tight">Customer details</h2>
             <p class="text-sm text-neutral-500 font-light">
                 Manage [ <span class="text-lg font-normal">{{costumer.firstName}}</span> ] detail.
-            </p>  
-            
-            </div>
-        <a [routerLink]="['/customers']" 
-        class="h-9 rounded-md px-3 bg-black
+            </p>
+
+        </div>
+        <a [routerLink]="['/customers']" class="h-9 rounded-md px-3 bg-black
             text-white flex items-center gap-3 font-medium">
             <i class="fa-solid fa-backward"></i>
             Back
@@ -23,31 +22,32 @@
             </div>
             <div class="w-[450px] border-l pl-10 border-black">
                 <ul class="flex flex-col gap-5 mb-10">
-                    <li class="flex justify-between gap-5 items-center"> 
+                    <li class="flex justify-between gap-5 items-center">
                         <span class="text-xl leading-4 font-bold">first Name</span>
                         <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.firstName}}</p>
                     </li>
-                    <li class="flex justify-between gap-5 items-center"> 
+                    <li class="flex justify-between gap-5 items-center">
                         <span class="text-xl leading-4 font-bold">last Name</span>
                         <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.lastName}}</p>
                     </li>
-                    <li class="flex justify-between gap-5 items-center"> 
+                    <li class="flex justify-between gap-5 items-center">
                         <span class="text-xl leading-4 font-bold">email</span>
                         <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.email}}</p>
                     </li>
-                    <li class="flex justify-between gap-5 items-center"> 
+                    <li class="flex justify-between gap-5 items-center">
                         <span class="text-xl leading-4 font-bold">phone Number</span>
                         <p class="text-lg leading-3 text-slate-600 font-thin">{{costumer.phoneNumber}}</p>
                     </li>
-                    <li class="flex justify-between gap-5 items-center"> 
+                    <li class="flex justify-between gap-5 items-center">
                         <span class="text-xl leading-4 font-bold">Register Date </span>
-                        <p class="text-lg leading-3 text-slate-600 font-thin">{{formatReadableDate(costumer.registrationDate)}}</p>
+                        <p class="text-lg leading-3 text-slate-600 font-thin">
+                            {{formatReadableDate(costumer.registrationDate)}}</p>
                     </li>
-    
                 </ul>
-                <button (click)="delete()" class="bg-red-600 px-4 py-2 font-medium text-white rounded-lg">Delete</button>
+                <button (click)="delete()"
+                    class="bg-red-600 px-4 py-2 font-medium text-white rounded-lg">Delete</button>
             </div>
         </div>
-      
+
     </div>
-</div>    
+</div>

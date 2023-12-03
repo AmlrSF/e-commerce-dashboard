@@ -6,38 +6,31 @@
                     bg-transparent px-3 py-2 text-sm ring-offset-background
                     file:border-0 file:bg-transparent file:text-sm
                     file:font-medium placeholder:text-muted-foreground
-                    focus-visible:outline-none pr-6" 
-                    type="text" placeholder="Search...">
+                    focus-visible:outline-none pr-6" type="text" placeholder="Search...">
                 <i class="absolute text-muted-foreground top-[50%] translate-y-[-50%]
                  right-[5px] fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="flex items-center space-x-4">
-                
-                <span (click)="togglePosition()" class="h-10   relative w-10 grid rounded-full place-content-center cursor-pointer bg-black ">
+                <span (click)="togglePosition()"
+                    class="h-10   relative w-10 grid rounded-full place-content-center cursor-pointer bg-black ">
                     <i class="text-xl text-white text-muted-foreground fa-solid fa-bell"></i>
                     <span class="fly-item bg-red-500">{{errorMsg.length}}</span>
-                    <div  class="z-1  absolute errors transition-all right-0  xs:w-[150px] w-[270px] p-3
+                    <div class="z-1  absolute errors transition-all right-0  xs:w-[150px] w-[270px] p-3
                      bg-black
                      rounded-lg " [style.top]="divTop">
                         <ul>
                             <li class="my-1" *ngFor="let err of errorMsg">
-                                <a class="text-white font-medium flex gap-2 items-center"   [routerLink]="['/products', err.id]">
-                                    <img [src]="err.image" class="h-[30px] w-[30px]" alt=""> 
-                                     reaches 0 in stock
+                                <a class="text-white font-medium flex gap-2 items-center"
+                                    [routerLink]="['/products', err.id]">
+                                    <img [src]="err.image" class="h-[30px] w-[30px]" alt="">
+                                    reaches 0 in stock
                                 </a>
                             </li>
                         </ul>
-                   
                     </div>
-                
-                </span>
-                <span class="h-10  w-10 hidden sm:grid rounded-full place-content-center bg-black ">
-                    <i class="text-xl text-white text-muted-foreground fa-solid fa-envelope"></i>
-
                 </span>
                 <span class="h-10 relative w-10 grid rounded-full place-content-center bg-black  ">
                     <i class="text-xl text-white text-muted-foreground fa-solid fa-user"></i>
-                
                 </span>
             </div>
         </div>

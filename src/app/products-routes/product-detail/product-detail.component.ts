@@ -14,13 +14,21 @@ import { TagsService } from 'src/app/tags.service';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+
   public product: any;
+
   public productForm: FormGroup;
+
   public imageUrl: string = '';
+
   public isopen: boolean = true;
+
   public loading: boolean = false;
+
   private apiUrl = 'http://localhost:3000/api/v1/products/product';
+
   public categories:any[] = [];
+
   public tags:any[] = [];
 
   constructor(
@@ -33,6 +41,7 @@ export class ProductDetailComponent implements OnInit {
     private catS:CategoriesService,
     private tagS:TagsService
   ) {
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
@@ -44,38 +53,57 @@ export class ProductDetailComponent implements OnInit {
       tag: [''],
       featured: [false]
     });
+
   }
 
+  //get all cattegories
   getAllcategories() {
+
     this.catS.getAllCategories().subscribe(
+
       (data: any[]) => {
+
         this.categories = data;
+
       },
       (error) => {
+
         console.error(error);
+
       }
     );
   }
 
+  //get all tags
   getAllTgas() {
     this.tagS.getAllTags().subscribe(
       (data: any[]) => {
+
         this.tags = data;
+
       },
       (error) => {
+
         console.error(error);
+
       }
     );
   }
 
   ngOnInit() {
+
     this.getAllTgas();
+
     this.getAllcategories();
 
     this.route.paramMap.subscribe(params => {
+
       const productId = params.get('id');
+
       if (productId) {
+
         this.productService.getProductById(productId).subscribe(
+
           (product) => {
             this.product = product.data;
 
@@ -97,7 +125,9 @@ export class ProductDetailComponent implements OnInit {
            
           },
           (error) => {
+
             console.log(error);
+
             
           }
         );
@@ -106,32 +136,38 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public openEditForm() {
+
     this.isopen = !this.isopen;
+
   }
 
+
+  //delete a product by id
   public deleteProduct(id: string) {
     this.productService.deleteProductById(id).subscribe(
       (res) => {
+
         console.log(res);
         this.router.navigate(['/products']);
-
        
       },
       (err) => {
-        console.log(err);
 
+        console.log(err);
         
       }
     );
+
     this.loading = false;
   }
 
   onSubmit() {
     this.loading = true;
     if (this.productForm.valid) {
+
       this.productForm.value['image'] = this.imageUrl;
 
-      // Make the HTTP request to update the product
+      
       this.http.put(`${this.apiUrl}/${this.product._id}`, {...this.productForm.value,updateDate:new Date()}).subscribe(
         (res) => {
           console.log(res);
@@ -139,27 +175,36 @@ export class ProductDetailComponent implements OnInit {
          
           this.productForm.reset();
           this.router.navigate(['/products']);
+
         },
         (err) => {
-          console.log(err);
 
-          
+          console.log(err);
+      
         }
       );
     }
   }
   public  formatReadableDate(dateString:any) {
     const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+
     const date = new Date(dateString);
+
     return date.toLocaleString('en-US', options);
+
   }
 
   onImageChange(event: any) {
+
     const file = event.target.files[0];
+
     if (file) {
+
       const reader = new FileReader();
+
       reader.onload = (e) => {
         this.imageUrl = reader.result as string;
+        
       };
       reader.readAsDataURL(file);
     }

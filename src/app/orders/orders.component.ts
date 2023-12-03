@@ -12,15 +12,21 @@ export class OrdersComponent implements OnInit{
 
   orders: any;
   statusOrder:boolean = false;
-  constructor(private http: HttpClient,private orderS:OrdersService,private productS:ProductServiceService){};
+  constructor(
+    private http: HttpClient,
+    private orderS:OrdersService,
+    private productS:ProductServiceService
+  ){};
 
   ngOnInit(): void {
     
       this.orderS.getOrders().subscribe(
       (res) => {
+
         this.orders = res;
         console.log(this.orders);
         this.statusOrder = true;
+
       },
       (error) => {
         console.error('Error fetching orders:', error);
@@ -40,8 +46,11 @@ export class OrdersComponent implements OnInit{
   }
 
   public  formatReadableDate(dateString:any) {
+
     const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+
     const date = new Date(dateString);
+
     return date.toLocaleString('en-US', options);
   }
 
@@ -61,7 +70,9 @@ export class OrdersComponent implements OnInit{
   }
   private updateProductQuantitiesV2(orders: any[], status?: boolean) {
   orders.forEach((order: any) => {
+
     order.products.forEach((updatedProduct: any) => {
+
       const productId = updatedProduct.product;
       const allQte = parseInt(updatedProduct.product.quantity, 10);
       const subQuantity = parseInt(updatedProduct.quantity, 10);
@@ -73,14 +84,18 @@ export class OrdersComponent implements OnInit{
       this.http.put(updateUrl, { quantity: newQuantity })
         .subscribe(
           (response) => {
+
             console.log(response);
+
           },
           (error) => {
+
             if (error.status === 404) {
               console.log('Product not found.');
             } else {
               console.error(error);
             }
+
           }
         );
     });
@@ -90,6 +105,7 @@ export class OrdersComponent implements OnInit{
 
   
   public toggleOrderStatusById(id: string) {
+
     const orderToUpdate = this.orders.orders.find((order: any) => order._id === id);
   
     if (orderToUpdate) {
@@ -115,7 +131,8 @@ export class OrdersComponent implements OnInit{
         console.log(res);
         
         this.orders.orders = this.orders.orders.filter((order: any) => order._id !== id);
-        this.updateProductQuantities(res,false)
+        this.updateProductQuantities(res,false);
+
       },
       (err) => {
         console.log(err);
@@ -125,6 +142,7 @@ export class OrdersComponent implements OnInit{
   //it works fine
   private updateProductQuantities(result: any, status?:boolean) {
     for (const updatedProduct of result.order.products) {
+
       const productId = updatedProduct.product._id;
       const allQuantity = parseInt(updatedProduct.product.quantity, 10);
       const subQuantity = parseInt(updatedProduct.quantity, 10);
@@ -140,14 +158,19 @@ export class OrdersComponent implements OnInit{
       this.http.put(updateUrl, { quantity: newQuantity })
         .subscribe(
           (response) => {
+
             console.log(response);
+
           },
           (error) => {
+
             if (error.status === 404) {
               console.log('Product not found.');
             } else {
               console.error(error);
+
             }
+            
           }
         );
     }

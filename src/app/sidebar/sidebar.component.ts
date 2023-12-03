@@ -7,6 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
   public links:any = [
     {
       title: 'Dashboard',
@@ -55,12 +56,18 @@ export class SidebarComponent {
   public currentPath: string | undefined ;
   
   public navigateTo(item:string){
-    this.router.navigate(['/',item])
+
+    this.router.navigate(['/',item]);
+
   }
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router
+  ) {
     this.router.events.subscribe((event) => {
+
       if (event instanceof NavigationEnd) {
+
         this.currentPath = event.url.slice(1);
         
       }
@@ -70,6 +77,7 @@ export class SidebarComponent {
   public sidebarisOpen : boolean = true;
 
   public toggleSideBar(){
+
     this.sidebarisOpen = false;
     console.log(this.sidebarisOpen);
     

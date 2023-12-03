@@ -14,10 +14,15 @@ import { TagsService } from 'src/app/tags.service';
   styleUrls: ['./new-product.component.css']
 })
 export class NewProductComponent  implements OnInit{
+
   public productForm: FormGroup;
+
   public imageUrl: string = '';
+
   private apiUrl = 'http://localhost:3000/api/v1/products';
+
   public categories:any[] = [];
+
   public tags:any[] = [];
 
   constructor(
@@ -43,29 +48,42 @@ export class NewProductComponent  implements OnInit{
   }
 
   ngOnInit(): void {
+
     this.getAllTgas();
+
     this.getAllcategories();
+
   }
 
 
+  //get all categories
   getAllcategories() {
     this.catS.getAllCategories().subscribe(
       (data: any[]) => {
+
         this.categories = data;
+
       },
       (error) => {
+
         console.error(error);
+
       }
     );
   }
 
+  //get all tags
   getAllTgas() {
     this.tagS.getAllTags().subscribe(
-      (data: any[]) => {
+      (data: any[]) => { 
+
         this.tags = data;
+
       },
       (error) => {
+
         console.error(error);
+
       }
     );
   }
@@ -81,7 +99,8 @@ export class NewProductComponent  implements OnInit{
         this.toastr.success('Product added successfully');
         this.productForm.reset();
         this.imageUrl = "";
-        //this.router.na
+
+        
       },
       (err)=>{
         this.toastr.success('a problem accours when adding a products');
@@ -93,16 +112,21 @@ export class NewProductComponent  implements OnInit{
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Read the file as a Base64 string or use other methods to handle file uploads
+      
+
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.imageUrl = reader.result as string; // Set the image URL from the file
+
+        this.imageUrl = reader.result as string; 
+
       };
+
       reader.readAsDataURL(file);
     }
   }
   
 
+  //function where i click on image it clicks on the image
   openImage() {
     const inputElement = document.getElementById('image');
     if (inputElement) {

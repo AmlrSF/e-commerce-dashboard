@@ -1,57 +1,57 @@
 <div class="mt-5 flex justify-between items-center gap-3 border-b pb-5 px-5">
-   
   <div>
-      <h2 class="text-3xl font-bold tracking-tight">Create Product</h2>
-      <p class="text-sm text-neutral-500 font-light">
+    <h2 class="text-3xl font-bold tracking-tight">Create Product</h2>
+    <p class="text-sm text-neutral-500 font-light">
       Add a new product.
-      </p> 
+    </p>
   </div>
-  <a [routerLink]="['/products']"
-    class="h-9 rounded-md px-3 bg-black
+  <a [routerLink]="['/products']" class="h-9 rounded-md px-3 bg-black
       text-white flex items-center gap-3 font-medium">
-        <i class="fa-solid fa-list"></i>
-        Products
-    </a>
+    <i class="fa-solid fa-list"></i>
+    Products
+  </a>
 </div>
 <div class="container px-5 max-w-xl">
   <form class="mt-5" [formGroup]="productForm" (ngSubmit)="onSubmit()">
-
-
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="form-group mb-3">
-        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="name">Name</label>
-        <input type="text" id="name" formControlName="name" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
-        
+        <label
+          class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="name">Name</label>
+        <input type="text" id="name" formControlName="name"
+          class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
       </div>
       <div class="form-group mb-3">
-        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="quantity">Quantity</label>
-        <input type="text" id="quantity" formControlName="quantity" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
-        
+        <label
+          class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="quantity">Quantity</label>
+        <input type="text" id="quantity" formControlName="quantity"
+          class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
       </div>
       <div class="form-group mb-3">
-        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="price">Price</label>
-        <input type="text" id="price" formControlName="price" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
-        
+        <label
+          class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="price">Price</label>
+        <input type="text" id="price" formControlName="price"
+          class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
       </div>
       <div class="form-group mb-3">
-        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="Price-Descount">Price Discount</label>
-        <input type="text" id="Price-Descount" formControlName="discount" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
-        
+        <label
+          class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="Price-Descount">Price Discount</label>
+        <input type="text" id="Price-Descount" formControlName="discount"
+          class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3" />
       </div>
       <div class="mb-3">
         <div class="form-group">
-          <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="image">Image</label>
-          <input
-            type="file"
-            id="image"
-            formControlName="image"
-            (change)="onImageChange($event)"
-            accept="image/*"
-            class="bg-gray-50 hidden border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none w-full p-3"
-          />
+          <label
+            class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="image">Image</label>
+          <input type="file" id="image" formControlName="image" (change)="onImageChange($event)" accept="image/*"
+            class="bg-gray-50 hidden border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none w-full p-3" />
         </div>
-        
-        <div (click)="openImage()" class="cursor-pointer relative bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] w-full p-3 h-44 flex justify-center items-center">
+        <div (click)="openImage()"
+          class="cursor-pointer relative bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] w-full p-3 h-44 flex justify-center items-center">
           <ng-container *ngIf="imageUrl; else noImage">
             <img [src]="imageUrl" [alt]="imageUrl" class="w-full h-full object-contain" />
           </ng-container>
@@ -59,38 +59,42 @@
             <img src="../../assets/download.png" alt="preview" class=" w-full h-full object-contain opacity-40" />
           </ng-template>
         </div>
-        
       </div>
       <div class="form-group mb-3">
-        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="description">Description</label>
-        <textarea id="description" formControlName="description" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm h-44 rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3"></textarea>
-        
+        <label
+          class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="description">Description</label>
+        <textarea id="description" formControlName="description"
+          class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm h-44 rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3"></textarea>
       </div>
       <div class="form-group mb-3">
-        <label for="category" class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Category</label>
-        <select id="category" formControlName="category" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3">
+        <label for="category"
+          class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Category</label>
+        <select id="category" formControlName="category"
+          class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3">
           <option value="">Select a category</option>
           <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
         </select>
       </div>
-      
       <div class="form-group mb-3">
-        <label for="tag" class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Tag</label>
-        <select id="tag" formControlName="tag" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3">
+        <label for="tag"
+          class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Tag</label>
+        <select id="tag" formControlName="tag"
+          class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none block w-full p-3">
           <option selected value="">Select a tag</option>
           <option *ngFor="let tag of tags" [value]="tag.name">{{ tag.name }}</option>
         </select>
       </div>
-      
       <div class="form-group flex mb-3 gap-3">
         <label class="flex gap-4 items-center">
-          Featured 
+          Featured
         </label>
-        <input type="checkbox" formControlName="featured" /> 
+        <input type="checkbox" formControlName="featured" />
       </div>
     </div>
     <div class="w-full">
-      <button type="submit" class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#321fdb] text-white flex items-center gap-3 font-medium">Submit</button>
+      <button type="submit"
+        class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#321fdb] text-white flex items-center gap-3 font-medium">Submit</button>
     </div>
   </form>
 </div>
