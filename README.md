@@ -1,4 +1,5 @@
-# App
+# Welcome to the E-Commerce Store Dashboard! This dashboard provides a comprehensive overview and control of your e-commerce application.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 
