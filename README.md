@@ -1,4 +1,4 @@
-![image](https://github.com/AmirSouaF/dashboard-store/assets/111384104/9919c20f-1ead-402a-bc70-7d47ddf563c7)# PickMe Dashboard
+### PickMe Dashboard
 
 This is the administrative dashboard for PickMe, your ultimate e-commerce store. It is built using AngularJS, Tailwind CSS, Material Angular, Core UI, MongoDB, Node.js, Express.js, and JWT for secure authentication.
 
