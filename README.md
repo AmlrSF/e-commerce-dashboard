@@ -43,7 +43,8 @@ The PickMe Dashboard provides a comprehensive set of tools to manage various asp
 
 - Manage product categories and subcategories.
 - Ensure a well-organized product catalog.
-![Uploading image.png…]()
+ ![image](https://github.com/AmirSouaF/dashboard-store/assets/111384104/3fdc9202-2338-4020-a9aa-e54503a37d20)
+
 
 ### Billboard Management
 
