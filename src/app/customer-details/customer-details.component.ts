@@ -61,4 +61,26 @@ export class CustomerDetailsComponent implements OnInit{
     )
   }
 
+  public formatPrice(price:any) {
+    if (typeof price === 'string') {
+     
+      if (price.includes('$')) {
+        
+        return price.replace('$', '') + '$';
+      } else {
+        
+        return price + '$';
+      }
+    } else if (typeof price === 'number') {
+      
+      return price.toString() + '$';
+    } else {
+     
+      return 'N/A';
+    }
+  }
+
+
+
+
 }
